@@ -25,7 +25,30 @@
         fetch('texts-xml/arunavatisangaha.xml') // Update the file path here
             .then(response => response.text())
             .then(data => {
-                document.getElementById('xml-content').innerText = data;
+                // Parse the XML content
+                let parser = new DOMParser();
+                let xmlDoc = parser.parseFromString(data, "text/xml");
+
+                // Function to recursively extract text content from XML nodes
+                function extractText(node) {
+                    let text = '';
+
+                    if (node.nodeType === Node.TEXT_NODE) {
+                        text += node.textContent;
+                    } else {
+                        for (let childNode of node.childNodes) {
+                            text += extractText(childNode);
+                        }
+                    }
+
+                    return text;
+                }
+
+                // Extract text content from the entire XML document
+                let textContent = extractText(xmlDoc);
+
+                // Set the extracted text content to the pre element
+                document.getElementById('xml-content').innerText = textContent.trim();
             })
             .catch(error => {
                 console.error('Error fetching XML file:', error);
