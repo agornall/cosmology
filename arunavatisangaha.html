@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TEI XML Viewer</title>
+    <style>
+        body {
+            font-family: 'EB Garamond', serif;
+            background-color: #e0f2f1;
+            color: #004d40;
+            margin: 0;
+            padding: 20px;
+        }
+        pre {
+            white-space: pre-wrap; /* preserve line breaks */
+            font-size: 16px;
+        }
+    </style>
+</head>
+<body>
+    <pre id="xml-content"></pre>
+
+    <script>
+        fetch('texts-xml/arunavatisangaha.xml') // Update the file path here
+            .then(response => response.text())
+            .then(data => {
+                document.getElementById('xml-content').innerText = data;
+            })
+            .catch(error => {
+                console.error('Error fetching XML file:', error);
+            });
+    </script>
+</body>
+</html>
