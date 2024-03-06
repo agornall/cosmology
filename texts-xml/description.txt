@@ -1,0 +1,1 @@
+This directory contains XML files of all Pali cosmological texts.
