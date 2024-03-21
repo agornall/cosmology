@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TEI XML Viewer</title>
+    <style>
+        body {
+            font-family: 'EB Garamond', serif;
+            background-color: #e0f2f1;
+            color: #004d40;
+            margin: 0;
+            padding: 20px;
+        }
+        pre {
+            white-space: pre-wrap; /* preserve line breaks */
+            font-size: 16px;
+        }
+    </style>
+</head>
+<body>
+    <pre id="xml-content"></pre>
+
+    <script>
+        fetch('texts-xml/pancagatidipani.xml') // Update the file path here
+            .then(response => response.text())
+            .then(data => {
+                // Parse the XML content
+                let parser = new DOMParser();
+                let xmlDoc = parser.parseFromString(data, "text/xml");
+
+                // Function to recursively extract text content from XML nodes
+                function extractText(node) {
+                    let text = '';
+
+                    if (node.nodeType === Node.TEXT_NODE) {
+                        text += node.textContent;
+                    } else {
+                        for (let childNode of node.childNodes) {
+                            text += extractText(childNode);
+                        }
+                    }
+
+                    return text;
+                }
+
+                // Extract text content from the entire XML document
+                let textContent = extractText(xmlDoc);
+
+                // Set the extracted text content to the pre element
+                document.getElementById('xml-content').innerText = textContent.trim();
+            })
+            .catch(error => {
+                console.error('Error fetching XML file:', error);
+            });
+    </script>
+</body>
+</html>
