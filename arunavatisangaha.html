@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>TEI XML Viewer</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=EB+Garamond&display=swap">
     <style>
         body {
             font-family: 'EB Garamond', serif;
@@ -14,7 +15,23 @@
         }
         pre {
             white-space: pre-wrap; /* preserve line breaks */
-            font-size: 16px;
+            font-size: 30px;
+        }
+        /* Custom styles for TEI elements */
+        pre .tei-head {
+            font-size: 30px;
+            font-variant: small-caps;
+        }
+        pre .tei-app {
+            font-size: 20px;
+            font-style: italic;
+        }
+        pre .tei-title {
+            font-size: 35px;
+            font-weight: bold;
+            text-align: center;
+            display: block;
+            margin-bottom: 20px;
         }
     </style>
 </head>
@@ -35,6 +52,12 @@
 
                     if (node.nodeType === Node.TEXT_NODE) {
                         text += node.textContent;
+                    } else if (node.nodeName === 'head') {
+                        text += '<span class="tei-head">' + node.textContent + '</span>';
+                    } else if (node.nodeName === 'app') {
+                        text += '<span class="tei-app">' + node.textContent + '</span>';
+                    } else if (node.nodeName === 'title') {
+                        text += '<span class="tei-title">' + node.textContent + '</span>';
                     } else {
                         for (let childNode of node.childNodes) {
                             text += extractText(childNode);
@@ -48,7 +71,9 @@
                 let textContent = extractText(xmlDoc);
 
                 // Set the extracted text content to the pre element
-                document.getElementById('xml-content').innerText = textContent.trim();
+                let xmlContentElement = document.getElementById('xml-content');
+                xmlContentElement.innerHTML = textContent.trim();
+                xmlContentElement.style.fontFamily = "'EB Garamond', serif";
             })
             .catch(error => {
                 console.error('Error fetching XML file:', error);
