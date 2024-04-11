@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>TEI XML Viewer</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=EB+Garamond&display=swap">
     <style>
         body {
             font-family: 'EB Garamond', serif;
@@ -33,8 +34,6 @@
             margin-bottom: 20px;
         }
     </style>
-    <!-- Link to EB Garamond font -->
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=EB+Garamond&display=swap">
 </head>
 <body>
     <pre id="xml-content"></pre>
@@ -72,7 +71,9 @@
                 let textContent = extractText(xmlDoc);
 
                 // Set the extracted text content to the pre element
-                document.getElementById('xml-content').innerHTML = textContent.trim();
+                let xmlContentElement = document.getElementById('xml-content');
+                xmlContentElement.innerHTML = textContent.trim();
+                xmlContentElement.style.fontFamily = "'EB Garamond', serif";
             })
             .catch(error => {
                 console.error('Error fetching XML file:', error);
