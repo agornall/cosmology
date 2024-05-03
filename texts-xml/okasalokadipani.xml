@@ -1,0 +1,305 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-model href="http://www.tei-c.org/release/xml/tei/custom/schema/relaxng/tei_all.rng" type="application/xml" schematypens="http://relaxng.org/ns/structure/1.0"?>
+<?xml-model href="http://www.tei-c.org/release/xml/tei/custom/schema/relaxng/tei_all.rng" type="application/xml"
+	schematypens="http://purl.oclc.org/dsdl/schematron"?>
+<TEI xmlns="http://www.tei-c.org/ns/1.0">
+  <teiHeader>
+      <fileDesc>
+         <titleStmt>
+            <title>Okāsalokadīpanī</title>
+         </titleStmt>
+         <publicationStmt>
+            <p>This is a transcription of a Khom script manuscript (PA_Camb_37_VI) from Det Kongelige Bibliotek, Denmark.</p>
+         </publicationStmt>
+         <sourceDesc>
+            <p>Information about the source</p>
+         </sourceDesc>
+      </fileDesc>
+  </teiHeader>
+  <text>
+      <body>
+         <pb n="1r"/>
+         <p><lb n="1"/>| nam’ atthu | natvā lokaviduṃ buddhaṃ dhammaṃ saṃghañ ca sādhukaṃ okāsalokaṃ dipassa yathāyuttaṃ suṇātha me | tatth’ ekacakkavāḷamhi āyāmā pi ca vitthārā dvādasasatasahassayojanāni tathā 
+         <lb n="2"/> paraṃ sesaṃ tisahassacatusataṃ paññāsa⁅ñ ca⁆samiritaṃ ○ | sabbaṃ satasahassāni chatiṃsaparimaṇḍalaṃ dasañ c’eva saha○ssāni aḍhuḍhāni satāni ca | duve satasaha
+         <lb n="3" break="no"/>ssāni cattari nahutāni ca ettakaṃ bahalaṅgena ○ saṃkhyātāyaṃ basundharā | cattāri satasahassā aṭṭh’eva nahutāni ○ ca ettakaṃ bahalaṅgena jalaṃ vāte patitthitaṃ | 
+         <lb n="4"/> navasatasahassāni (mā)luto nabhamuggato sa○ṭṭhiñ c’eva sahassāni esā lokassa saṇṭhāti | cakkavāḷassa ○ vemajjhe silābhūpyaṃ patitthito tikuṭeh’ ādhi
+         <lb n="5" break="no"/>karaṇamūlasaṇṭhānakehi tu | caturāsītisahassāni ajjhogāḷhe mahaṇṇave accuggato ca vitthinno tāvad eva na ttutta(mo) | duve satasahassāni pañc’ eva nahutāni ca sahassā</p>
+      
+         <pb n="1v" break="no"/>
+         <p><lb n="1"/>ni duve hoti parikkhepo sineruno | aṭṭhasaṭṭhīsahassāni lakkham ekañ ca sabba(n)ā pādato yāva c’ aggā selarā(j)ā samuṭṭhito | pācinapassaṃ rajaṭaṃ dakkhiṇaṃ indanilakaṃ pacchimaṃ pha
+         <lb n="2" break="no"/>likaṃ passaṃ utaraṃ kāñcanamayaṃ | pubbadakkhiṇapa○ssena maṇirajaṭaraṃsiyo maṇiphalikaraṃsī ca passā dakkhiṇapa○cchimā pacchimuttarato passā suvaṇṇaphalikappa⁅..⁆bhā 
+         <lb n="3"/>pācinnattarapassamhā suvaṇṇarajaṭappakā | nikkhantā ○ meruto etā gantvā sā(g)arapiṭṭhito cakkavāḷaṇ ṭhitaṃ ha ca | cattā○ro tāhi sā(g)arā | cattāri patibhaṇḍāni sinerussa pa
+         <lb n="4" break="no"/>māṇato pañcapañcasahassāni yojanāni bha○vanti hi tāva t(ī)sābhirakkhehi nātādīh’ ev’ adhiṭṭhitā | tato upaḍḍha○paḍhena pamāṇena yathākkamaṃ ajjhogāḷha
+         <lb n="5" break="no"/>gatā dibbā nānāratanavicittakā | yuggandharo isindaro karaviko sudassano nemindaro vinattako assakaṇṇo giribrahā | ete sattamahāselā sinerussa samantato</p>
+      
+         <pb n="2r"/>
+         <p><lb n="1"/> mahārājānam āvāsā devayakkhā nisevitā | yuggandharo dvitāḷīsaṃ ekavīsaṃ isindharo karaviko sahassāni dasapañcasatāni ca | sudassano sahassāni pañcapaññāsadvesatā
+         <lb n="2"/>nemindaro dvisahassaṃ chasataṃ pañcavīsati | vi○nattako dvādasañ ca sahassā tisataṃ bhave assakaṇṇo chapaññā○sa chasatān’ ekagāvutaṃ | ete sattamahā
+         <lb n="3" break="no"/>selā ubbedhato bahalato ettakā etta○kāy’ eva ubbedhā dviguṇā (t)ato catu(r)āsītidvi(t)āḷīsaṃ e○kavīsaṃ yathākkamaṃ dasañ c’eva sahassāni tathā 
+         <lb n="4"/>pañcasatāni {c}ca pañcam’ eva sahassāni paññāsu○ttaradvesatā duve sahassā chasatā pañcavīsatiyādhikā sa○hassaṃ tisatañ c’eva yojanānañ ca dvā«da»sa | satta
+         <lb n="5"/>sidaṇṇavā ce te (g)ambhi⁅..⁆rattena vitthārā tappamānā ca daṭṭhañ ca anupubbasamuggatā tasmāssakaṇṇapādamhi gambhirattena taṃ samā tato ’nupubbanicchāte tena tena sama(g)atā | te asītisahassāni tisatā</p>
+      
+         <pb n="2v" break="no"/>
+         <p><lb n="1"/>ni titāḷīsaṃ gāvu{t}tāni patiṇ’ eva tadambo sattapabbato | lakkham ekaṃ sahassāni chasaṭṭhī chasatāni ca sattasītidvigāvutaṃ piṇḍo yaṃ sattasāgare | pañcalakkhāsahassāni caturāsītidvisaṭṭhī ca yojana
+         <lb n="2" break="no"/>ḍhañ ca vitthārā aṅgara(ta)mahānatā | sattarasacalakkhā○ni dvepaññāsasahassādikā sataasītisattāḍhaṃ maṇḍalaṃ assa○kaṇṇakā | cakkavāḷasaddhiṃ merunaṃ aṅgaraṃ yojanāni tu 
+         <lb n="3"/> cattāri satasahassāni sahassā satasattati(ṃ) sattā○ni sattañeyyāni pañcavīsuttarāni ca | cakkavāḷassa kaṇṇānaṃ aṅga○raṃ jalasāgaro duvelakkhasahassāni satavīsati cha
+         <lb n="4"/> satā navutitīṇiñeyyāni yojanāni tigā○vutaṃ | assakaṇṇasamipam hi gambhirattena gaṅgato tato ’nupubba○ninno so cakkavāḷam bhirato | satasahassāne
+         <lb n="5"/> katisaṃ sahassāni dasaṭṭha ca tisatañ c’eva paññāsa samuddaparimaṇḍalaṃ | dveasītisahassāni ajjhogāḷho mahaṇṇave accuggato ca vitthino cakkavāḷasiluccayo | satasa</p>
+         
+         <pb n="3r" break="no"/>
+         <p><lb n="1"/>hassam ubbedho sahassa ca tuṭṭhīyā parikkhipitvā taṃ sabbaṃ lokadhātumayaṇ ṭhito | dasayojanasahassāni jambudipo pamāṇato hoti sakaṭasaṇṭhāno tikātaṃ samupāgato 
+         <lb n="2"/>| manussā ekakā tamhi tisahass’ eva santite sā○garo catusahassaṃ himavā tisahassiyo | caturasso ’ttarakuru○dipo aṭṭhasahassiyo | dipo pubbavideho ca 
+         <lb n="3"/>aḍhacandasamupamo | vaṭṭo amaragoyāno dve ○ ’me sattasahassiyo bhaddantadhammapāsena yathā bh(ū)tatthadassanā ○ pubbapacchimadipānaṃ evaṃ saṇṭhānam īritaṃ | vaṭṭo pubba
+         <lb n="4"/>videho ti (g)oyāno aḍhacandako evaṃ bāhi○rake satthe vadant’ aññe pan’ añathā | tāvataṃsā surapuraṃ avicinirayo ○ tathā jambudipo ca etāni samān’ eva pamānato | 
+         <lb n="5"/>jambu ca jambudipamhi asurānañ ca pātali simbalīgarud(dh)ānañ ca (g)oyāne ca kadambako kurūsu kapparukkho ca videhe siriso dumo tāvatiṃse pāricchanto kappaṭṭhā sattime dumā | tipañcayo</p>
+         
+         <pb n="3v" break="no"/>
+         <p><lb n="1"/>janakhanthaṃ parikkhepā ime dumā paññāsayojanakkhanthā sākhāyāmāsamantato satayojanavitthinnā tāvad eva ca uggatā ti | iti okāsalokadipaniyaṃ bhummaṭṭhadipano nāma pathamo kaṇḍo 
+         <lb n="2"/>| atha pan’ ākāsaṭṭhaparicchedo vuccati pathamuppattikā○le kira candimasuriyanakkhattatārakarūpasinerupakkavāḷahimavantapabba○tadipasamuddā apubbaṃ aparimaṃ phagguṇapuṇṇamīdivase ye
+         <lb n="3"/>va pātubhavanti | tadā tesaṃ sattānaṃ rasapathavaṃ paribhū○ñjantānaṃ sayampabhāya antarahitāya andhakārābhibhavena bhi(t)asitānaṃ ○ ālokaṃ patthayamānānaṃ surabhāvajanayamānaṃ su
+         <lb n="4" break="no"/>riyamaṇḍalaṃ uṭṭhahi | ten’ ev’ assa suriyo ti nā○maṃ ahosi | tasmiṃ divasaṃ ālokaṃ katvā atthaṅgamite puna ’ndha○kāre (j)āte pun’ aññaṃ ālokaṃ patthayantā pana a
+         <lb n="5" break="no"/>tha nesaṃ chandaṃ ñatvā viya candamaṇḍalo uṭṭhahi | ten’ ev’ assa cando ti nāmaṃ ahosi | tesu cando maṇivimāne vasati | taṃ bāhiraṃ rajaṭena parikkhitaṃ anto c’eva bahi ca ubhayaṃ pi sī</p>
+         
+         <pb n="4r" break="no"/>
+         <p><lb n="1"/>tam eva hoti | suriyo anto kanakavimāne vasati taṃ bāhiraṃ phalikaṃ parikkhitaṃ taṃ ubhayam pi uṇham eva | cando ujukaṃ āyāmato vitthārato u«b»bedhato ca ekuṇapaññāsa
+         <lb n="2"/>yojano | parimaṇḍalato tīhi yojane○hi onadiyaḍhasatayojanā | suriyo ujukaṃ āyāmavi○thārubbedhato paññāsayojano parimaṇḍalato 
+         <lb n="3"/>diyaḍhasatayojano | cando heṭṭhā suriyo ○ uparithito aṅgarānesaṃ yojanaṃ hoti | candassa heṭṭhimanta○to suriyass’ uparimantato yojanasataṃ hoti | 
+         <lb n="4"/>cando ujukaṃ sanikaṃ gacchati | ujugamanan nāma udaya○ṭṭhānato atthaṅgaṭṭhānagamanaṃ | so hi amābasiyaṃ suriyena saddhiṃ ○ gacchanto divase divase yojanānaṃ satasahassaṃ o
+         <lb n="5" break="no"/>hāyamāno puṇṇamāsiyaṃ upaḍhamagge y’eva ohiyati | cando tiriyaṃ si{ṃ}ghaṃ gacchati tiriyaṃ gamanaṃ nāma uttarato dakkhiṇā«bh»imukhaṃ gamanaṃ dakkhiṇato (v)ā uttarābhimukhaṃ gamanaṃ | so hi yasmiṃ mā</p>
+         
+         <pb n="4v" break="no"/>
+         <p><lb n="1"/>se sukkapakkhassa pathamapāṭipadadivase yasmiṃ thāne paññāyati tato uttarābhimukhaṃ vā dakkhiṇābhimukhaṃ vā gantvā ten’ eva ekamāsena puna taṃ thānaṃ pāpuṇi | tasmā tassa tiriyagamanaṃ si{ṃ}
+         <lb n="2" break="no"/>ghan ti vuc(c)ati | candassa dvīsu passesu purato paccha○to samañ ca nakkhattatāratā gacchanti | cando dhen(u) viya vacchaṃ taṃ taṃ nakkha○ttaṃ upasaṅgamati | nakkhattāni pana attano vithiyā va 
+         <lb n="3"/> gacchato attano gamanaṭṭhānaṃ na vijjahanti | suri○yassa tiriyagamanaṃ dandhaṃ | so hi yasmiṃ māse yassaṃ vithiyaṃ yasmiṃ ○ vārāsimhi thito tato chahi māsehi uttaraṃ chahi mā
+         <lb n="4" break="no"/>sehi dakkhiṇañ ca gantvā ekasaṃvaccharena puna taṃ ○ māsaṃ taṃ vithiṃ taṃ rāsiṃ pāpuṇāti | tasmiṃ suriyassa tiriyagamanaṃ dandha○n ti vuccati | ujukagamanaṃ siṃghaṃ so āmāsi
+         <lb n="5" break="no"/>yaṃ candena samāgantvā sukkapakkhassa pathamadivase attano siṃghagāmitāya candassa dandh(u)gāmitāya yojanānaṃ satasahassaṃ candamaṇḍalaṃ ohāya gacchati | atha cando pacchimadisāya lekkhā viya</p>
+         
+         <pb n="5r"/>
+         <p><lb n="1"/>dissati | dutiyāya satasahassan ti yāva uposathadivasā satasahassaṃ ohāya gacchati | atha cando anukkamena vaḍhitvā uposathadiva⁅..⁆se sabbaso paripuṇṇo hoti puna 
+         <lb n="2"/> kālapakkhassa pathamapātipadadivase pandassa dandhagāmi○tāya attano ca siṃghagāmitāya «y»ojanānaṃ satasahassaṃ (ch)āvi○tvā gaṇhati | dutiyāya satasahassan ti yāva u
+         <lb n="3" break="no"/>posathadivasā satasahassaṃ (ch)āvitvā gaṇhāti | a○tha (c)ando anukkamena hāyitvā uposathadivase sabbaso na paññāya○ti | cando heṭṭhā katvā suriyo upari hoti 
+         <lb n="4"/>mahatiyā pātiyā uddakabhājanaṃ viya candamaṇḍalaṃ ○ paṭicchādeti | majjhantike te⁅..⁆ha cchāyā viya tassa (ch)āyā na pa○ññāyati | so (ch)āyāya apaññāyamānāya 
+         <lb n="5"/> dure thitānaṃ divā padipo viya «saya»m pi na paññāyati | ettha candamaṇḍalassa hānaṃ vaḍhanañ ca evaṃ veditabbaṃ⁅o⁆ | cando sukkapakkhe attano uparibhāgato pati(g)asuriyā lokena heṭṭhato pavattāya</p>
+         
+         <pb n="5v"/>
+         <p><lb n="1"/>attano (ch)āyāya suriyassa duradurabhāvena divase divase anukkamena parihāyamānāya attano (ch)āyāya vasena anukkamena attano maṇḍalapadesassa vaḍhamānassa viya passantānaṃ dissamā
+         <lb n="2" break="no"/>natāya anukkamena vaḍhanto viya puṇṇamāyaṃ puripu○ṇṇamaṇḍalo viya hutvā (di)ssati | kālapakkhe divase divase suri○yāsannabhāvena (ch)āyāya avaḍhamānatāya canda
+         <lb n="3" break="no"/>ssa maṇḍalaṃ hāyamānaṃ viya dissatī ti | iti candī○masuriyaparivattadipano nāma dutiyo kaṇḍo | candimasiriyā○naṃ ajjavithī (n)āgavithī govithī ti tisso vithīyā honti 
+         <lb n="4"/>| yāya vithiyā suriye (ga)cchante vasssavalāha○kā devaputtā suriyābhitā pasaṅga(tt)ā attano vimānato na nikkhama○nti | kiḷā pasutā hutvā na vicaranti | tadā kira 
+         <lb n="5"/>suriyavimānaṃ pakatimattato adho otarit(v)ā vicarati | tassa oruyha caranten’ eva candavimānaṃ adho oruyha carati taggatikattā | tasmā sāvithī udakābhāvena ajjānurūpatāya ajjavithī ti samaññaṃ (g)a</p>
+      
+         <pb n="6r" break="no"/>
+         <p><lb n="1"/>tā | yāya pana vithiyā suriye gacchante vassavalāhakadevaputtā suriyābhitā pabhāvato abhiṇhaṃ attano vimānato bahinikkhamitvā kiḷāpasutā va ito pito va viparanti | tadā 
+         <lb n="2"/>kira suriyavimānaṃ pakatimaggato uddhaṃ āruyhitvā vicara○ti | tassa uddhaṃ āruyha caranten’ eva candavimānaṃ pi uddhaṃ āruyha carati ○ taṃgatikattā | taṃgatikatāya ca samānagati(n)ā vāta 
+         <lb n="3"/>maṇḍalena vimānassa pellitabbattā | tasmā sā vithī ○ udakaṃ bahubhāvena (n)āgānurūpatāya (n)āgavithī ti samaññaṃ gatā | ya○dā suriyo uddhaṃ a(n)āruyhanto adho ca ano(t)aranto 
+         <lb n="4"/>ca pakatimaggen’ eva gacchati | tadā vassavalāhakā ○ yathākālaṃ yathārūciñ (c)a vimānato nikkhamitvā sukhena caranti | te○na kālena kālaṃ vassanato loke utusamatā 
+         <lb n="5"/>hoti | tāya utusamatāya hetubhutāya sā candimasuriyānaṃ gatigatānurupatāya govithī ti samaññaṃ gatā | candimasuriyā chamāse sineruto bahinikkhamanti chamāse antovicara</p>
+      
+         <pb n="6v" break="no"/>
+         <p><lb n="1"/>nti | idaṃ pana vacanaṃ appakālaṃ candabahukālassa suriyassa antonitaṃ katvā vuttaṃ | suriyo yeva bahichamāse nikkhamati chamā⁅..⁆se pavīsati | na cando | cando pana aḍhamāse nikkhamati 
+         <lb n="2"/>aḍhamāse pavīsati | etthāyaṃ viṭṭhārakathā | si○nerussa cakkavāḷassa ca yaṃ thānaṃ vemajjhaṃ taṃ majjhimavithī nāma | ta○ssa vemajjhaṭṭhānassa sineruno ca yaṃ thānaṃ vemajjhaṃ 
+         <lb n="3"/>taṃ antovithī nāma | tassa ca vemajjhaṭṭhānassa cakka○vāḷassa ca yaṃ thānaṃ vemajjhaṃ taṃ bahivithi nāma | ettha sinerusaddena ○ yadi selarā(j)ā ca (ga)hito bhaveyya | atthayu
+         <lb n="4" break="no"/>tti ca na siyā dassanañ ca na sameyya | kathaṃ a○tthāyuttitā dassanā samatā | sā antovithī sineruto satasa○hassaekuṇavīsatisahassāni cattārisatā
+         <lb n="5" break="no"/>ni ekavīsatiyojanāni ekagāvutañ ca yugandarapabbatassa opari yeva hoti | tattha ṭṭhito majjhattikasuriyo jambudipakānaṃ upari hoti | (ch)āyā pi nesaṃ sariranto gacchati | tasmā jambudi</p>
+      
+         <pb n="7r" break="no"/>
+         <p><lb n="1"/>po tassā heṭṭhā yugandarapabbate yeva āpajjheyyā ti | (n)āpajjeyya uccataravasena tathā dassanato ti ce | sā vithi jambudipato dure sādhikāṭṭhanahutasahassayojanappamāṇā | 
+         <lb n="2"/>tattha ṭṭhito pi suriyo uccatarabhāvena upariṭṭhito ○ viya yadi paññāyati | majjhimavithī pana sudassanapabbatassa ○ bahi samuddamajjhe uparibh(ā)ākāse thito tato 
+         <lb n="3"/>āsannā sādhikasaṭṭhī sahassayojanappamāṇā ○ | tatra ṭṭhito majjhattikasuriyo jambudipakānaṃ upariṭṭhito viya ka○smā na paññāyati | uttaradisāya thito pi samā
+         <lb n="4" break="no"/>no kasmā dakkhiṇadisato ca paññāyati | (ch)āyā ○ pi ca tipadani(gg)atā | bahivithī ca tato āsannatarāsādhikapaññā○sayojanappamāṇā dakkhinadisāya thitā | 
+         <lb n="5"/>tattha ṭṭhito upariṭṭhito viya na dissati | dakkhiṇadisato ca dissati | (ch)āyā pi ca padani(gg)atā dure vijjamānassa upari aṭṭhitassa suriyassa upariṭṭhitabhāvagahaṇaṃ heṭṭhā aṭṭhitassa ca jambudhipassa</p>
+      
+         <pb n="7v"/>
+         <p><lb n="1"/>heṭṭhā thitabhāvagahaṇaṃ tathā dassanañ ca samipe ṭṭhitassa tathā gahaṇaṃ tathā a(da)ssanañ ca ayam etthāyuttitā dassanā samatā ca dassanaviparitatāthā ti | tasmā sinerusaddena sine
+         <lb n="2" break="no"/>ruṃ agahetvā tassa pākāraparikkhe ca bhūto pabbatabā○hiro assakaṇṇapabbato atthayuttisambhavato dassanasamatā○ya ca gahetabbo | sinerucakkavāḷahimavantapabba
+         <lb n="3" break="no"/>tā (p)ātubhavantī ti etthāpi sineru(g)ahaṇena ○ yugandarādayo pi gayhanti | tadā hi na sineru eko yeva pātu○bhavati | yugandharādayo pi ⁅ne⁆ tena sah’eva eka
+         <lb n="4" break="no"/>kkhaṇe pātubhavantī ti | evaṃ sinerusaddena assa○kaṇṇapabbatassa gahaṇato sā antovithī assakaṇṇasami○pe hoti viññāyati | tasmā tassa vithiyā 
+         <lb n="5"/>ādi sinerusamipe thito | sineruto tīṇi satasahassāni (ch)asahassāni navasatāni catupaññāsayojanāni aḍhatessatāvutānī vīsatiusabhāni ca | assakaṇṇato chapaññā</p>
+      
+         <pb n="8r" break="no"/>
+         <p><lb n="1"/>sasahassāni navasatāni tevīsatiyojanāni diyaḍhagāvutaṃ vīsatiusabhāni ca | sā antovithī cakkavāḷato yojanasatasahassaṃ sattatisahassāni sattasatāni sattatiyojanāni ekagāvutaṃ 
+         <lb n="2"/>vīsatiusabhāni ca hoti | jambudipassa upari○bhāge hoti | jambudipo ca tassā heṭṭhā thito | ta○smā āsāḷhamāse tattha thito majjhantikasuriyo jambu
+         <lb n="3" break="no"/>dipakānaṃ upari yeva hoti | (ch)āyā pi nesaṃ na pa○ññāyati sarīranto ga(dh)eti | āsāḷhamāse ekadivase si○nerusamipe caritvā tato dakkhiṇābhimukhaṃ yā
+         <lb n="4" break="no"/>yanto anukkamena divase chasatāni battiṃsayo○janāni diyaḍha(g)āvutaṃ catutiṃsausabhāni aṭṭhadaṇḍāni chara(t)anāni pa○ñcāṅgulappamāṇañ ca | ekekasmiṃ nakkhatta
+         <lb n="5" break="no"/>pādesatādhikaṃ dvisahassaṃ aṭṭhayojanaṃ ekagāvutaṃ aṭṭhausabhaṃ dvidaṇḍaṃ charatanaṃ ekavidatthi aṭṭhaṅgulañ ca | ekekasmiṃ nakkhatte aṭṭhasahassaṃ catusataṃ tetiṃsayojanāni battiṃsausabhaṃ</p>
+      
+         <pb n="8v"/>
+         <p><lb n="1"/>ekādasadaṇḍaṃ charatanañ ca ekamāse aṭṭhārasasahassāni navasatāni catusattatiyojanāni diyaḍha(g)āvutaṃ tettiṃsa usabhāni chadaṇḍaṃ caturatanaṃ ekavidatthicaturaṅgulappamāṇañ ca pa
+         <lb n="2" break="no"/>desaṃ nikkhamanto taṃ antovithi atikkamati | ○ sāyaṃ vithikakkaṭarāsī ti vuccati | evaṃ sabbavithi(ṃ) sudaṭṭhabbaṃ | ta○to ravi sāvanamāsavithisiharāsiṃ saṃkamati | sā 
+         <lb n="3"/>pana vithī sineruto tīṇi satasahassāni catuca○ttāḷ(ī)sasahassāni navasatāni tīṇi yojanāni aḍhateyya ○ gāvutaṃ chausabhāni terasadaṇḍāni dviratanaṃ aṭṭhaṅgula
+         <lb n="4" break="no"/>ñ ca | assakaṇṇato ca tu navuttisahassāni aṭṭha○satāni dvāsattatiyojanāni diyaḍha(g)āvuttaṃ chausabhaṃ terasa○daṇḍaṃ dviratanaṃ aṭṭhaṅgulañ ca | cakkavāḷato satasa
+         <lb n="5" break="no"/>hassaṃ dvattiṃsasahassāni aṭṭhasatāni ekavīsatiyojanāni ekagāvutaṃ tetiṃsausabhaṃ chadaṇḍaṃ catuhatthaṃ ekavidatthi caturaṅgulappamāṇañ ca hoti | tato bhaddamāsavithiṃ saṃkamati |</p>
+      
+         <pb n="9r"/>
+         <p><lb n="1"/>| sā ca sineruto tisatasahassaṃ te saṭṭhīsahassaṃ aṭṭhasataṃ aṭṭhasattatiyojanāni aḍhagāvutañ ca | assakaṇṇato satasahassaṃ terasasahassaṃ aṭṭhasataṃ chapattāḷīsayojanāni a
+         <lb n="2" break="no"/>ḍhuḍha(g)āvutañ ca | cakkavāḷato pi ekam pamāṇam ○ eva | ayaṃ vithī kaññarāsī ti vuccati | tato āssujamāsavithiṃ ○ tulyarāsiṃ saṃkamati | sā sineruto tīṇi satasa
+         <lb n="3" break="no"/>hassāni aṭṭhasatāni dvepaññāsayojanāni ○ dvigāvutaṃ (t)etiṃsau(g)abhaṃ chadaṇḍaṃ caturatanaṃ ekavidatthicaturaṅgulañ ca ○ | assakaṇṇato satasahassaṃ ba(tt)iṃsasahassā
+         <lb n="4" break="no"/>ni aṭṭhasataṃ ekavīsañ ca yojanāni eka(g)ā○vutañ ca usabhādīni (t)aṃsadisāni | cakkavāḷato catunavuttisaha○ssāni aṭṭhasatāni dvāsa(tt)atiyojanāni eka(g)ā
+         <lb n="5" break="no"/>vutaṃ chausabhaṃ terasadaṇḍaṃ dvihatthaṃ aṭṭhaṅgulañ ca | kaññarāsi{lya}tularāsissa ca antare sakantitthānaṃ mahāsamuddavemajjha«ssa» uparibhāge channaṃ rāsīnaṃ majjhe hotī ti | tato kamāsavithivicchikarāsiṃ</p>
+      
+         <pb n="9v"/>
+         <p><lb n="1"/>saṅgamati | sāyaṃ kattikamāsavithīsineruto cattārisatasahassāni sahassam ekaṃ aṭṭhasataṃ sattavīsatiyojanāni chabbīsati usabhāni terasadaṇḍaṃ dvihatthaṃ aṭṭhaṅgulañ ca | assakaṇṇato 
+         <lb n="2"/>satasahassāni ekapaññāsasahassāni sattasa○tāni pañcanavuttiyojanāni ti(g)āvutaṃ usabhadīni taṃ sadisāni | ○ cakkavāḷato pañcasattatisahassāni aṭṭhasatāni sa
+         <lb n="3" break="no"/>ttanavuttiyojanāni chādhikatigāvutaṃ terasausabhāni ○ chadaṇḍaṃ caturatanaṃ ekavidatthicatthuraṅgulañ ca | tato nikkhamanto mi○(gg)asiramāsavithī(dh)anurāsiṃ saṅkamanto yathāvutta
+         <lb n="4" break="no"/>yojanāppamāṇena tattha yāyanto ekamā○sena dhanūrāsiṃ an(t)aṃ sabbabāliraṃ cakkavāḷasamipaṃ caranto puna ta○to nivattanto sineruṃ paṭicca uttarābhimukhaṃ yāyamāno 
+         <lb n="5"/>pussamāsavithimaṃ kārarāsiṃ saṅkamati | tato māghamāsavithiṃ kumbharāsiṃ tato phagguṇavithīminarāsiṃ tato cittamāsavithi mesarāsiṃ tato visākhamāsavithi usabharāsiṃ saṅkamati |</p>
+      
+         <pb n="10r"/>
+         <p><lb n="1"/>tato jeṭṭhamāsavithiṃ mithunarāsiṃ saṅkamanto tattha yathāvuttayojanappamāṇena dinedine pavīsanto mithunarāsī antaṃ sinerusamipaṃ gacchati | ettha dhanūrāsiṃ antaṃ maṃkararāsiṃ ādi ca ekadvayaṃ samaṃ cakkavāḷa
+         <lb n="2"/>samipe thitaṃ | cakkavāḷato chapaññāsasahassaṃ ○ navasataṃ tevīsayojanaṃ diyaḍhagāvutaṃ vīsatiusabhañ ca | a○ssakaṇṇat⁅t⁆o satasahassasattanahuttaṃ sattasataṃ satta
+         <lb n="3" break="no"/>tiyojanaṃ gāvutekaṃ vīsusa«t»aṃ | sineruto ca ○ tu satasahassaṃ dvinahutaṃ aṭṭhasataṃ diyaḍhayojanaṃ vīsatiusabhañ ca | ○ (dh)anurāsīādim aṅgararāsiṃ antañ ca samaṃ tathāvicch(i)
+         <lb n="4" break="no"/>karāsiṃ antaṃ kumbharāsiādi ca vicchikarāsīādi ku○mbharāsīantañ ca tularāsiantaṃ minarāsiādi ca tularāsī○ādi minarāsīantañ ca kaññarāsīanta mesarā
+         <lb n="5" break="no"/>sīādi ca kaññarāsīādi mesarāsīantañ ca siharāsīantaṃ usabharāsīādi ca sīharāsīādi usabharāsīantañ ca kakkaṭarāsīantaṃ mithunarāsīādi ca kakkaṭarā</p>
+         
+         <pb n="10v" break="no"/>
+         <p><lb n="1"/>sīādi mithunarāsīantañ ca saman ti veditabbaṃ | idañ ca pana dakkhiṇāyanakale uttarāyanakāle ca thitamajjhan(t)ike thāne daṭṭhabbaṃ | idaṃ pan’ ettha niyamavacanaṃ | vasse ukkaḍhi
+         <lb n="2" break="no"/>tena adhimāse⁅na⁆ kate pathamasaṃvacchare āsā○ḷhamāsādayo kakkaṭarāsī«ā»d«ī»su yathākkamaṃ tiṭṭhanti | ta○dā jeṭṭhamāso āsāḷhamāso ca dvemāsā si
+         <lb n="3" break="no"/>nerusamipe tiṭṭhanti | na āsāḷhamāso e○kā va tiṭṭhati | migasiramāso pussamāso ca d(v)emāsā cakkavā○ḷasamipe tiṭṭhanti | na pussamāso eko va tiṭṭhati 
+         <lb n="4"/>| dutiye pana saṃvacchare āsāḷhamāsassa sukka○pakkhamithunarāsimhi kaṇṇapakkhaṃ kakkaṭarāsimh(ī) ti eko āsāḷhamā○so va sinerusamipe thito hoti | evaṃ thitaṃ pana 
+         <lb n="5"/>gahetvā aṭṭhakathācariyehi āsāḷhamāse sinerusamipe caranti vuttaṃ evaṃ thite yeva āsāḷhamāse chāyā abhā(v)ā«dhivā»atidīgho chattiṃsanādiko rattiṃ attirassā catuvīsatinādikā |</p>
+         
+         <pb n="11r"/>
+         <p><lb n="1"/>sāvanamāsassa sukkapakkhaṃ kakkaṭarāsimhi kaṇhapakkhaṃ sīharāsimhī ti taṃ evaṃ thitaṃ gahetvā sāvanamāse nikkhamaniyamāso ti ca vuttaṃ | tadā chāyā ekapadikādi vā catutaṃsanādikā ratti(ch)abbī
+         <lb n="2" break="no"/>satinādikā | añña(m)āsā aññarāsī ca evam eva da○ṭṭhabbā | bhaddamāse chāyādvipadikādivā dvattiṃsanādiko ratti aṭṭha○vīsati nādikā | āssujjamāse saṅkantidivase rattindi
+         <lb n="3" break="no"/>vāsamāsanādikā | chāyā ti padikā | tato paraṃ visamā oṇādikā | kattikamāse rattibattiṃsanādikā divāaṭṭhavī○satinādiko chāyā catupadikā | 
+         <lb n="4"/>māgasiramāse ratticatutiṃsanādikādivā chabbīsanādi○ko chāyā pañcapadikā | pussamāsassa cana sukkapakkhaṃ dhanurā○simhi kaṇṇapakkhaṃ maṅkararāsimhī ti evaṃ thitaṃ pussamā
+         <lb n="5" break="no"/>saṃ sandhāya pussamāse cakkavāḷasamipe carantī ti | tadā chāyā (cha)padikā rattiatidīghā chattiṃsanādikādivā atirasso catuvīsatinādiko | aññathā nāyādikā tathā na honti |</p>
+         
+         <pb n="11v"/>
+         <p><lb n="1"/>māghamāse chāyā pañcapadikā ratticatutiṃsanādikādivā chabbīsanādikā | phagguṇamāse chāyācatupadikā rattibattiṃsanādikādivā aṭṭhavīsatinādiko cittamāse saṅkanti divase randivāsamā
+         <lb n="2" break="no"/>tisattisanādiko | tato paraṃ visamā onādikā ○ chāyā tipadikā | visākhamāse rattiaṭṭhavīsanādikā divābattī○sanādiko (ch)āyā dvipadikā | jeṭṭhamāse ratti
+         <lb n="3" break="no"/>chabbīsanādikādi vā catuttiṃsanādiko chāyā e○kam adikā ti evaṃ dutiye saṃvacchare tathā tathā thite āsāḷha○māsādike ayaṃ ⁅sā⁆ chāyādini yamo labha(t)i na labha
+         <lb n="4" break="no"/>ti aññasaṃvacchare aññathā thite ti veditabbaṃ | ○ tatiye pana saṃvacchare āsāḷhādimāsāsakavīthikakkaṭarāsīādi○to ohiyitvā | jeṭṭhamāsādi vithimithu
+         <lb n="5" break="no"/>narāsīādīsu honti | tadā āsāḷhasāvanamāsā dve sine{r}rūsamipe honti | pussamāsamāghamāsā cakkavāḷasamipe ti | tasmā tesaṃ sakasakarāsimhi thapanatthaṃ vassaṃ ukku</p>
+         
+         
+         <pb n="12r" break="no"/>
+         <p><lb n="1"/>ḍhantī ti | bahivithim aṅkararāsī āyāmato ca vitthārato ca navasatatahassāni pañcavīsahassāni chasatāni tīṇi yojanāni aḍha(g)āvu(t)añ ca | parimaṇḍalato sattavīsasatasahassā
+         <lb n="2" break="no"/>ni chasattatisahassāni aṭṭhasatāni navayojanāni di○yaḍhagāvutañ ca ekam eko rāsi ujukaṃ dvesatasahassāni eka○tiṃsasahassāni cattārisatāni tigāvutaṃ dasabhañ ca 
+         <lb n="3"/> ekamekaṃ nakkhattaṃ satasahassaṃ aṭṭhasataṃ catucattāḷīsa○yojanaṃ tigāvutaṃ terasausabhaṃ chadaṇḍacaturatanaṃ eka○vidatthicaturaṅgulañ ca | ekamekaṃ nakkhattapādaṃ 
+         <lb n="4"/> pañcavīsasahassāni sattasatāni ekādasayoja○naṃ aḍhagāvutaṃ tevisaṃ usabhadaṇḍādīni vuttasadisāni a(jj)a ○ udayaṭṭhānaṃ pi na divase asambhavananto satasa
+         <lb n="5" break="no"/>hassaṃ sattasataṃ terasayojanaṃ ekabhāvutaṃ pañcatiṃsausabhaṃ padesaṃ ohiyanto divase divase ettakaṃ ohiyati | tasmā rāsi saṅkanti c’eva dinakkhayo ca adhimāso pahotī ti | majjhe ti</p>
+      
+         <pb n="12v"/>
+         <p><lb n="1"/>cittamāsaāssujjamāsavithimesatulaṃ rāsī āyāmavitthārato aṭṭhasatasahassāni ekādasasahassāni sattasatāni chappaññāsayojanāni ekagāvutañ ca | parimaṇḍalato catuvīsasatasahassā
+         <lb n="2" break="no"/>ni pañcavīsasahassāni dvesatāni aṭṭhasaṭṭhiyoja○nāni ti gāvutañ ca | antoāsāḷhamāsavithikakkaṭarāsī ā○yāmavitthārato chasatasamāssāni sattanavutisaha
+         <lb n="3" break="no"/>ssāni | diyaḍha(g)āvutañ ca | parimaṇḍa○lato vīsasatasahassāni tenavuttisahassāni sattasatāni aṭṭha○vīsayojanāni aḍhagāvutañ ca | sesaṃ vuttā
+         <lb n="4" break="no"/>nusārena anurupato ñeyyan ti yaṃ pan’ettha vi○nayaṭikākārena sāriputtamahātherena sinerucakkavāḷānaṃ a○ntare yojanappamānaṃ paricchindantena | sine{r}rū
+         <lb n="5"/>cakkavāḷānaṃ antaraṃ parimāṇato | pañcasatasahassāni sahassānuṇasaṭṭhī ca satāni sattañeyyāni pañcavīsuttarāni (c)ātivuttaṃ | taṃ cakkavāḷapabbataṃ cakkavāḷato bahikatvā vuttattā na yujjati |</p>
+      
+         <pb n="13r"/>
+         <p><lb n="1"/>na hi cakkavāḷapabbato cakkavāḷato bahi hoti | ekaṃ cakkavāḷaṃ āyāmato ca vitthārato ca dvādasasatasahassāni tīṇi sahassāni cattāri satāni paññāsañ ca yojanāni | sabbaṃ satasaha
+         <lb n="2" break="no"/>ssāni chattiṃsaparimaṇḍalaṃ dasañ c’eva sahassāni aḍhu○ḍhāni satāni ca | duve satasahassāni cattāri nahutā na ca e○ttakaṃ bah⁅u⁆ala(gg)ena saṃkhyātāyaṃ basundharā ti | evaṃ pa
+         <lb n="3" break="no"/>ricchinnāyāmavitthāraparimaṇḍalabahalappamāṇāya ○ cakkavāḷapathaviyā uparisine{r}rūādinaṃ cakkavāḷasiluccayassāpi pa○titthitatā | evaṃ saṇḍitena cetthā ti etena saṃkhā
+         <lb n="4" break="no"/>tappamāṇāya cakkavāḷabasundharā ā(dh)ārabhāvadipake○na bhummavacanen’ eva pākaṭaṃ hotī ti kin tena aññesaṃ aññathā vilapane○na | so hi heṭṭhā dvveasītisahassāni o(g)ā
+         <lb n="5" break="no"/>ḷho hutvā tassā pathaviyā upari yeva sine{r}ruādayo viya patitthito na pathavī viy⁅ā⁆a udakapariyantaṃ katvā thito | tiṇṇaṃ tiṇṇaṃ cakkavāḷānaṃ antare eko lokantarikantanirayo aṭṭhasahassayoja</p>
+      
+         <pb n="13v" break="no"/>
+         <p><lb n="1"/>nappamāṇo ti ca tato cakkavāḷābhim(u)khaṃ gantvā cakkavāḷasamipe caritvā ti ca s(ī)ne{r}russa cakkavāḷasacayaṃ thānaṃ vemajjhantī ti ca ādīhi vacanehi tassa cakkavāḷabhāro pākado ye rāti | pari
+         <lb n="2" break="no"/>kkhipitvāna taṃ sabbaṃ lokadhātum⁅e⁆ayaṇ (ṭh)ito ti vacanato ○ so gato bāhirā bhaveyyā ti ce | avayavāvayavīvasena ta○ssa tacāvacanato chaviyā kāyo paṭicchanno yathā
+         <lb n="3" break="no"/>bhūtaṃ na dissatī ti ādisu viya | tattha hi ca viavaya○vo kāyo avayavī tesaṃ vasena chaviyā kāyo paṭicchanno ti vuttaṃ ○ | na chavikāyato bahi aññavasena evam i(dh)ā
+         <lb n="4" break="no"/>pi lokadhāt(ū)avayavīcakkavāḷasiluccayo avaya○vo | tesaṃ vasena tathā vuttaṃ | yathā cakkavāḷan ti ○ lokadhātu | sā hi nemimaṇḍalasadise
+         <lb n="5" break="no"/>na cakkavāḷapabbatena samantato parikkhittattā cakkavāḷan ti vuccatī ti | ekena cakkanemicakkato bahiaññā na hoti cakkāvayavo ca | evaṃ cakkavāḷapabbato cakkavāḷato bahi añño</p>
+      
+         <pb n="14r"/>
+         <p><lb n="1"/>na hoti cakkavāḷā vayavo (cā) ti dassetī ti daṭṭhabbaṃ | evaṃ pathamavuttaṃ yojanappamāṇe samudde va appatitthā pi te tato parivuttāni majjhavithiṃ tato nāmā ti ādīni suriyavithiyojana
+         <lb n="2" break="no"/>ppamāṇāni khalitān’ eva bhaveyyuṃ | ○ sine{r}rū cakkavāḷānaṃ antaran ti etthā pi sine{r}rusaddena sine{r}rūga○haṇe pi yathāvuttadoso vasiyā | 
+         <lb n="3"/>yaṃ pi ca sihaḷadīpavemajjhe sine{r}rū antare ○ yojanappa(mā)ṇaṃ | tasmā sihaḷadīpassa majjhato ○ me{r}ruantaraṃ duve satasahassāni d(v)isate chādhikā
+         <lb n="4" break="no"/>ni pate tiṃsañ ca sahassāni aṭṭhārasati gāvutan ti vu○ttaṃ | taṃ sine{r}ruto sattannaṃ pabbatānaṃ vemajjhassa sudassanapa○bbatassa vemajjham pi na pāpuṇāti | kathaṃ | si
+         <lb n="5" break="no"/>ne{r}ruyugandharādīnaṃ antare sīdantarasamuddā (n)āma tevisālato yathākkamaṃ sine{r}ruādīnaṃ accuttamasamānaparimāṇā ti vadantī ti etena vuttappamāṇena sine{r}rupāde samuddho caturāsī ti</p>
+      
+         <pb n="14v"/>
+         <p><lb n="1"/>yojanasahassāni | yugandharo dvetāḷīsasahassāni tassa bahisamuddo tattako va | isindaro ekavīsasahassāni tathā tassa bahisamuddo | karaviko pañcasatādhikadasasaha
+         <lb n="2" break="no"/>ssaṃ tathā tassa bahisamuddo | ettakāni pi dvesa○tasahassāni ekatiṃsasahassāni gatāni dvisahassaṃ dvisataṃ aṭṭhā○rasatigāvuttappamāṇam eva avasiṭṭhaṃ | taṃ sudassanapa
+         <lb n="3" break="no"/>bbatassa pañcasahassadvisatapaññāsayojanapamā○ṇassa vemajjhathānato catusatachayojanaekatāvutena oṇapa○desam eva pā⁅..⁆puṇāti | ku(ṭ)o assakaṇṇapabba
+         <lb n="4" break="no"/>takuṭo jambudīpakuṭo sihaḷadīpan ti idam eva ○ atimahākhalitaṃ | evarūpaṃ hi thānaṃ paññācakkhupateh’eva daṭṭha○bbaṃ | ye c’aññe pi ācariyā cakkavāḷapariyāpa
+         <lb n="5" break="no"/>nnaṃ katvā vadanti | tesaṃ citādisam evā ti veditabbaṃ | iti vithīdipano nāma tatiyo kaṇḍo | candimasuriyā ekappahāren’ eva tīsu dīpesu paññāyanti evaṃ mahiddikā | ekekāya disā</p>
+         
+         <pb n="15r" break="no"/>
+         <p><lb n="1"/>ya navanavayojanasatasahassāni andhakāraṃ vidhamitvā ālokaṃ dassenti evaṃ mahānubhāvā | kathaṃ | imasmiṃ hi dīpe suriyuggamanakāle pubbavidehe ditamajjhattiko kālo hoti | uttaraku
+         <lb n="2" break="no"/>rūsu atthaṅgamanakālo | tadā hi suriyamaṇḍalaṃ ○ uggacchantaṃ hutvā pi imasmiṃ dīpe thitassa upaḍham eva dissati | u○ttar⁅u⁆akurūs(u) thitassa ogacchanta hutvā upadaḍham eva dissati 
+         <lb n="3"/>| evaṃ ekavelāyam eva tīsu dīpesu ālokaka○raṇaṃ hoti | amaragoyāne majjhimayāmo pubbavi○deham hi ugga[ma]nakāle uttarakurusu majjhattiko 
+         <lb n="4"/>(g)oyāne atthaṅgamanakālo idha majjhimayā○me | uttarakurūsu uttamanakāle (g)oyān⁅..⁆e majjhattiko ○ idh’ atthaṅgamanakā⁅..⁆lo pubbavidehe majjhimayā
+         <lb n="5" break="no"/>mo ti | (g)oyānadipe uggamanakāle idha majjhantiko videhadipe atthaṅgamanaṃ uttarakurūsu majjhimayāmo ti | (t)ath’ etaṃ vuccati | imamhi dīpe ravino diyeḍhe majjhantiko hoti videhadi</p>
+         
+         <pb n="15v" break="no"/>
+         <p><lb n="1"/>pe kurumhi dīpamhi atthaṅgame ti goyānadīpamhi upaḍharatti | surodayo hoti yadā videhe majjhantiko hoti tadā kurūsu goyānadīpamhi dirāvasānaṃ hoti ḍharattaṃ idha jambudīpe | kurusu dī
+         <lb n="2" break="no"/>po vinodayamhi goyānadipe divamajjhakālo ○ idh’ eva dīpe bhavate divantaṃ pubbavidehe bhavataḍharattaṃ | goyāna○dīpe suriyodayamhi majjhantikā lobhavatīdha dī
+         <lb n="3" break="no"/>pe atthaṅgamo pubbavidehadīpe dīputtare aḍha○nisaṃbhave ve ti | idañ ca vacanaṃ samarattindivesu | dvīsu cittamāsaā○ssuj(j)amāses(v) eva labbhamānaṃ tisu dīpesu udaya
+         <lb n="4" break="no"/>majjhantikaatthaṅgamanakālānaṃ samataṃ gahetvā vuttaṃ ○ na hi aññamāsesu tesaṃ samatā labhati | etena ca uda○yathitamajjhantikatthaṅgamanakālānaṃ samatā dipane
+         <lb n="5" break="no"/>na catūsu dipesu vithimāsautusamatā dipitā hotī ti daṭṭhabbaṃ | aññathā hi kadāci pi tesaṃ samatā nakavessa | vithimāsautuvisamatāya hi sati yadā idha dīpe cittamāso hoti |</p>
+         
+         <pb n="16r"/>
+         <p><lb n="1"/>tadā videhadīpe āsāḷhamāso uttarakurusu āssujjamāso goyāne pussamāso cittamāso ca samarattindiro tathā āssujjamāso āsāḷhamāse dighadivaso pussamāso rassadi
+         <lb n="2" break="no"/>vaso | evaṃ visamamāsadivase sutīsu dīpesu kathaṃ ○ udayādīnaṃ samatā bhaveyya kadā(c)i pi na bhaveyyā ti | pāḷiyaṭṭha○kathādīsu ca pamāṇavacanabhūtesu catūsu dīpesu vi
+         <lb n="3" break="no"/>thimāsautuvisamatā vacanaṃ na dissati | appamāṇa○vacanesu bāhirasatthesu evaṃ dissati | tasmā yutti upaparikkhitvā ya○thā pāḷiyaṭṭhakathā nirodhana hoti tathā gahetabbaṃ 
+         <lb n="4"/>| ekekāya disāya navanavasatasahassāni ○ andhakāraṃ vidhamitvā ālokaṃ karontī ti ettha pana yadā dakkhiṇadisa○to cakkavāḷasamipe bahimaṇḍale caranti | tadā 
+         <lb n="5"/>uttaradisāya assakaṇṇato satasahassaṃ pañcacattāḷīsasahassāni satayojanāni sattasaṭṭhī ca aḍhagāvutā vīsatiusabhāni ca ālokaṃ dassenti | tato paraṃ ca yāva cakkavāḷapa</p>
+         
+         <pb n="16v" break="no"/>
+         <p><lb n="1"/>bbato dveasītisahassāni pañcasatāni chabbisatiyojanāni aḍhayojanavīsati usabhāni ca avasiṭṭhāni | tattha ālokaṃ na karonti | evaṃ sesadisāsu pi | yadā majjhimavithiyaṃ cara
+         <lb n="2" break="no"/>nti | tadā uttaraassakaṇṇato dvesa⁅va⁆tasahassā○ni navuttiyojanāni diyaḍhagāvutañ ca ettake (th)āne ālokaṃ (ph)aranti ○ | tato paraṃ yāva cakkavāḷā pañcavīsasahassāni 
+         <lb n="3"/>chasatāni aḍhuḍhāni ca yojanāni avasiṭṭhāni | ta○ttha ālokaṃ na obhāsenti | sesadisāsu pi evam eva daṭṭhabbaṃ | ya○dā antomaṇḍale sine{r}ru(sa)mipe caranti | tadā sa
+         <lb n="4" break="no"/>bbadisāsu navasatasahassayojanāni na ppahontī ○ ti | ālokadipano nāma patuttho kaṇḍo | ñeyyapucce○na devānaṃ anumānena daṭṭhabbā | channaṃ bhumyantaraṃ 
+         <lb n="5"/> samaṃ dvinnaṃ pathamabhūmīnaṃ samā | na gāhi(t)uṅ gato | tasmā sinerupaḍhena pamāṇena va u(mb)ato anumānena daṭṭhabbā pāṭiyetā chabhūmiyo | tāsu paccekam ekā pi merupa</p>
+         
+         <pb n="17r" break="no"/>
+         <p><lb n="1"/>ḍhasamuggatā yojanāni dvitāḷīsasahassāni bhavanti hi | duve satasahassāni yojanāni punāparaṃ dvepaññāsasahassāni ubbedhena chabhūmiyo | kāmabhūmavaṇṇanā | dassetvā na
+         <lb n="2"/>yato evaṃ channabhūminam uccataṃ brahmabhūminam uccataṃ ○ puna dāni kathayati | heṭṭhimā brahmalokamhā cā ti (t)āmaha(t)isi○lā ahorattena ekena sogatā aṭṭhatāḷīsa  
+         <lb n="3"/>yojanāni sahassāni catumāsena bhūmitā evaṃ vu○ttappamāṇena | sāya heṭṭhimabhūmikā ito satasahassāni sa○ttapaññāsahaparaṃ saṭṭhīñ c’eva sahassāni ub(b)edhe
+         <lb n="4" break="no"/>na pakāsitā | ito ce padasāgacche ekāhe○n’ ekayojanaṃ soḷas’eva sahassāni vassāni samupātame ○ yojanesu pi vuttesu hitvā kāmappamāṇataṃ 
+         <lb n="5"/>sesāni vasavattīnaṃ pārisa(jj)ānam antaraṃ tañ ca paññahi paññāsa satasahassāni (c)āparaṃ aṭṭhañ c’eva sahassāni yojanāni pavuccate | pathamabhūmivaṇṇa{ṃ}nā | ito parāsu sabbāsu brahmabhū</p>
+         
+         <pb n="17v" break="no"/>
+         <p><lb n="1"/>mīsu yojanā tappamāṇā va daṭṭhabbā na yatāhen’ adhimatā | pārisajjappabhūtīsu ābhagavattā chakoṭiyo saṭṭhīsatasahassāni sahassāni cha⁅tacha⁆vutti bhūmito ābhattamhā sattakoṭida
+         <lb n="2" break="no"/>saṭṭha ca lakkhāni pañcanahutā chasahassāni sabbadhi ○ | ekayojanam ekāhaṃ bhavattaṃ kittakaṃ vajje vassasatasahassañ ca ○ sahassāni tathā navanavuttiñ c’eva chasata vassāni sa
+         <lb n="3" break="no"/>mupātam eti | rathareṇūchatti(ṃ)sato sikkhātā satta ○ okkātā chaññamāso pi satta te sattaṅgulaṃ ca muṭṭhi ca vidatthitā duve ○ siyuṃ | ratanādisatte vayaṭṭhitā vīsatusabhaṃ gāvu
+         <lb n="4"/>taṃ usabhāsītiyoyanā ca tu gāvutaṃ | iminā yo○janen’ eva pathavipabbatādīnaṃ antaraṃ sabbabhūmīnaṃ veditabbaṃ va viññu○nā | dhanupañcasataṃ kosaṃ kosacattārigāvu
+         <lb n="5"/>taṃ gāvuttāni pa cattāriyojanan ti pavuccatī ti | idañ ca yojanaṃ aññaṃ candasuriyapamāṇakaṃ vimā(n)ādiparicchedaṃ yojanaṃ aparaṃ pi ca | dasakkhārā ekapādā | chapādā ca vinā</p>
+         
+         <pb n="18r" break="no"/>
+         <p><lb n="1"/>dikā vinā pañcadasapādaṃ catuppādañ ca nādikā | saṭṭhī nāsi ahorattaṃ tiṃsarattikaṃ māsakaṃ dvādasamāsiye vassaṃ evaṃ kālaṃ vinādiyaṃ | lokapadikasārake idaṃ vacanaṃ vuttaṃ hotī ti | 
+         <lb n="2"/>pathavitalato yāva tāvatiṃsassa antaraṃ caturā○sītisahassa yojanāni bhavanti hi | tāvatiṃsabhavanto  ○ yāva yāmāya antaraṃ catulakkhaṃ tinahutaṃ catusa
+         <lb n="3" break="no"/>hassam eva ca catusatañ ca viññeyyaṃ yojana ○ ni pamānato | yāmāto yāva tussitaṃ sattalakkhaṃ tato paraṃ ○ caturāsītisahassañ ca aṭṭhasatañ ca yojanaṃ tu
+         <lb n="4" break="no"/>ssiṃ(t)ā yāva parinimmitaṃ lakkhanekā dasā pi ca pa○ñcatiṃsasahassāni dvisatāni dvikayojanā | nimmānara○to vasavatti antaraṃ yojanaṃ pana catuddhus’ eva
+         <lb n="5"/>lakkhāni paññāsītisahassataṃ adhikachasataṃ ñeyyaṃ paṇḍitena nayaññunā | vasavattikato yāva brahmaparisajjānaṃ antaraṃ aṭṭhāras’eva lakkhāni chattiṃsa ca sahassakaṃ</p>
+         
+         <pb n="18v" break="no"/>
+         <p><lb n="1"/>yojanaṃ iti ñātabbaṃ viññ(u)nā hi nayaññu(n)ā | (p)ārisajjato pari(tt)ābhā antaraparimānato ekavīsañ ca lakkhāni chaḷāsītisahassakaṃ catusatañ ca yojanaṃ viññātabbaṃ nayaññunā | pa
+         <lb n="2" break="no"/>ri(tt)ābhā brahmalokā pari(tt)asubhatā pana pabāvī○satilakkhāni chattiṃsañ ca sahassakaṃ | aṭṭhasatañ ca yojanaṃ ○ bhavatī ti (ph)āniyāni | pari(tt)asubhatā yāva ve
+         <lb n="3" break="no"/>happalā antare aṭṭhavīsañ ca lakkhāni sattāsī○tisahassakaṃ adhikaṃ dvisatañ c’eva yojanānaṃ pamāṇāto ○ | avahāto yāva tappā antaraṃ parimāṇato 
+         <lb n="4"/>pañcatiṃs’eva lakkhāni aṭṭhāsītisahahassakaṃ a○tappāsudassānan tu antaraṃ parimāṇato navatiṃsachalakkhāni  ○ aṭṭhatiṃsasahassakaṃ catusat⁅u⁆añ ca yojanā bha
+         <lb n="5" break="no"/>vanti vi(ph)āniyā | sudassāsu dassīnantaṃ antaraṃ pamāṇato dvācattāḷīsalakkhāni aṭṭhāsītisahassakaṃ aṭṭhasatañ ca viññeyyaṃ | yojanāni pamāṇato sudassito akaniṭṭhā a</p>
+         
+         <pb n="19r" break="no"/>
+         <p><lb n="1"/>ntaraṃ parimāṇato chacattālīsaṃ lakkhāni adhikaṃ dvisatañ c’eva yojanāni bhavanti hi | akaniṭṭhā tu ārupparupamabhūmikā pana | navatāḷīsalakkhāni navāsītisahassaṃ kaṃ a(dh)ikaṃ a
+         <lb n="2" break="no"/>sata(bb)o va yojanāni bhavant(i) (|) pathamā rupato yā○va dutiyā rūppabhūmikā te paññāsañ ca lakkhāni cattāri nahutā○ni ca | dutiyāruppato tatiyā ruppabhūmikā 
+         <lb n="3"/>chapaññāsa lakkhāni cha c’eva nahutāni ca catusa○tañ ca viññeyy⁅u⁆aṃ yojanāni ppamāṇato | tatiyā ruppato yā○va catutthā ruppabhūmikā saṭṭh(ī) satasahassāni ca
+         <lb n="4" break="no"/>ttāri nahutāni ca yojanāni bhavantī ti viññātabbaṃ naya○ññunā | yojananām aduvidhā bhavanti patimānato | byāmādi yo○janañ c’eva bhūmādi yojanaṃ pi ca tesaṃ bhedaṃ tū dipet(u)ṃ 
+         <lb n="5"/>evaṃ kathenti pubbakā (ch)attīsaparimāṇam ekonuccatisatetajāditāpi chatt(iṃ)sa vinayassa ca ṭikāyaṃ | vithiparicchinnayojanaṃ sabbaṃ paritanaṃ yaṭṭhi hi katayojanā tasmā pana idaṃ sabbaṃ yojanaṃ</p>
+         
+         
+         <pb n="19v"/>
+         <p><lb n="1"/>cundhusakaṃ iti sabbaṃ (th)āva vijāneyyaṃ nayaññu paṇḍito naro | evaṃ suddharabhāvena sayuttatthakathāya hi | vuttaṃ achedakaṃ vācaṃ āharissāmi taṃ idha heṭṭhimā brahmalokamhā pāti
+         <lb n="2" break="no"/>tā mahatisilā ahorattena ekena aṭṭhatāḷī○sasahassakaṃ yojanāni pa(ta)ntā va catumāsena bhūmikaṃ tasmā ○ bhūmitalāyā va brahmasajjānam antaraṃ sattapaññāsa
+         <lb n="3" break="no"/>lakkāni chana⁅ta⁆hutañ ca yojanaṃ bhavatī ti hi ññātabbaṃ ○ paṇḍi⁅..⁆tena nayaññunā | ubbedhaṃ catuekaṃ thatvā catusatena tu gaṇi○te bhūmito yāva heṭṭhimā brahmalokitā antaraṃ yo
+         <lb n="4" break="no"/>janaṃ hoti | tasmāhu atidurakaṃ tato atidurataṃ ○ bhava(tt)an ti pakāsitaṃ | bhavatto tividho hoti pu(gg)alānaṃ pa..dato ○ | puthujjanabhavattā ca bhavattā ariyassa pa | tathā sabba 
+         <lb n="5"/> bhavatto ca bhavatto va tidho bhave puthujjanānaṃ bhavatto vehapphalā ti dipito | ariyānaṃ bhavatt(o) va tu akaṇiṭṭhā ti dipito n’evasaññānāsaññan ti sabbabhavattanāmako sabbabhavatte thatvāna ku</p>
+         
+         <pb n="20r" break="no"/>
+         <p><lb n="1"/>ṭā(k)ārasamāsilā pāti(g)ātī hi vassehi dvimāsehi raṭṭhe rattindivehi adhikaṃ catuvīsaghaṭihi ca pathavitalamā (c)ā ti ekarattindive (gu)ṇa aṭṭhatāḷīsasahassaṃ yojanā(g)ato (t)ato pa
+         <lb n="2" break="no"/>ñcakosakapaṇṇāsa lakkhāni nahutaṃ dvayaṃ | tisa○hassaṃ dvisattaṃ ca yojanāni bhavanti hi | umbarasusattaṃ (t)rīni ekacatu○pāpiyaṃ catusatena (g)unitaṃ bhumito ābhittikaṃ | 
+         <lb n="3"/>yojanaṃ iti viññeyyaṃ paṇḍitena nayaññunā | ○ sabbabhavatte thatvāna pātitā mahatisilā catumāsapañcadine pa○ñcāsaghaṭitehi tu āñciññamhi sampattā tati
+         <lb n="4" break="no"/>yā rūppabhūmiyaṃ tato mahatisilā te māsaaṭṭhavīsa○dinehi tettiṃsaghaṭihi pattādutiyabhūmiyaṃ tato nipātitā ○ hetu te māse ekavisati | dinehi pañcadasahi
+         <lb n="5"/>ghadihi adhikehi tu ākāsānañ cāyatanapathamā ruppabhūmiyaṃ sappattā iti viññeyyaṃ tato tu pātitā pana | te māsaṃ terasadinaṃ sattapaññāsanādihi | akaniṭṭha(m) hi sampattā ta</p>
+         
+         <pb n="20v" break="no"/>
+         <p><lb n="1"/>to nithātitāsilā tu sāte māsachadivasehi navatiṃsaghaṭihi ca | pāpuṇesu dassibhūmi dvemāsekūnavīsati rattīhi visanādīhi pattāhi sudassabhūmiyaṃ | tato nipātitā sāhi dvemāsehi dvi
+         <lb n="2" break="no"/>visati dinehi tīhi ghaṭihi ātappābhūmipāpuṇi○tato nipātitāsāhi dvimā(s)ehi catudasa dinehi pañcatāḷīsa○ghaṭihi avihaṃ pati | avihamhā cātitāsā dvihi mā
+         <lb n="3" break="no"/>sehi sattahi rattahi sattavīsehi ghaṭihi adhi○ke hi tu vehapphalasappatto tato nipātitā pana dve māsanava○nādihi tatiyajjhānabhūmiyaṃ sampattā iti ññā
+         <lb n="4" break="no"/>tabbā paṇḍitena nayaññunā | tato nipātitā se○lā catumāsehi bhūmikaṃ | evan tu tīhi vassehi dvemāsaṭṭhadi○ne hituṃ catuvīsatinādi pathavi(t)alam upāpuṇi | u
+         <lb n="5" break="no"/>paribhūmavaṇṇā | bhūmantaraparicchedadipano nāma pañcamo kaṇḍo | okāsalokadipanī samatā | buddhaṃ saraṇaṃ gacchāmi dhammaṃ saraṇaṃ gacchāmi saṃghaṃ saraṇaṃ gacchāmi | |</p>
+         
+      </body>
+  </text>
+</TEI>
