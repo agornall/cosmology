@@ -6,16 +6,20 @@
     <title>19th I.B. Horner Lecture - Pali Text Society</title>
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=EB+Garamond&display=swap">
     <style>
-        body {
+        * {
             margin: 0;
             padding: 0;
+            box-sizing: border-box;
+        }
+        body {
             font-family: 'EB Garamond', serif;
             background-color: #e0f2f1;
             text-align: center;
-            padding-top: 50px;
+            padding-top: 30px;
         }
         h1, h2 {
             color: #004d40;
+            margin: 20px; /* Visual spacing */
         }
         h1 {
             font-size: 2.5rem;
@@ -27,16 +31,12 @@
             font-size: smaller;
             vertical-align: super;
         }
-        .video-wrapper, .pdf-wrapper {
-            margin: 20px auto;
-            width: 90%; /* Adjust based on your layout preference */
-            position: relative;
-            box-shadow: 2px 2px 10px rgba(0,0,0,0.3); /* Shadow for 3D effect */
-        }
         .video-wrapper {
+            margin: 30px auto; /* Increased margin around the video */
+            width: 80%; /* Adjust based on your layout preference */
             padding-top: 56.25%; /* 16:9 Aspect Ratio */
         }
-        .video-wrapper iframe, .pdf-wrapper iframe {
+        .video-wrapper iframe {
             position: absolute;
             top: 0;
             left: 0;
@@ -45,7 +45,16 @@
         }
         .pdf-wrapper {
             height: 500px; /* Adjust based on your content */
-            margin-top: 10px; /* Space between video and PDF */
+            margin: 30px auto; /* Increased margin around the PDF */
+            width: 80%; /* Consistent with video width */
+            box-shadow: 2px 2px 10px rgba(0,0,0,0.3); /* Shadow only for PDF */
+        }
+        .pdf-wrapper iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
         }
         .top-nav {
             width: 100%;
