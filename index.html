@@ -4,13 +4,13 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Pali Cosmological Texts</title>
-    <!-- CSS Styles -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=EB+Garamond&display=swap">
     <style>
         body {
             margin: 0;
             padding: 0;
             font-family: 'EB Garamond', serif;
-            background-color: #e0f2f1; /* light blue background */
+            background-color: #e0f2f1;
         }
         .container {
             width: 100%;
@@ -18,38 +18,51 @@
             flex-direction: column;
             align-items: center;
             text-align: center;
-            padding-top: 50px; /* Add padding to separate title from link */
+            padding-top: 50px;
         }
         h1 {
             font-size: 2rem;
-            color: #004d40; /* dark green text color */
+            color: #004d40;
         }
         a {
             text-decoration: none;
-            color: #004d40; /* dark green text color */
+            color: #004d40;
             font-size: 1.5rem;
-            margin-top: 20px; /* Add margin to separate title from link */
+            margin-top: 20px;
+        }
+        .top-nav {
+            width: 100%;
+            text-align: center;
+            padding: 20px 0;
+            background-color: #e0f2f1;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+        .top-nav a {
+            margin: 0 15px;
+            font-size: 1rem;
+            text-transform: uppercase;
+            text-decoration: none;
+            color: #004d40;
+        }
+        .top-nav a:hover, .top-nav a:focus {
+            text-decoration: underline;
+            color: #00796b;
         }
     </style>
-    <!-- Link to EB Garamond font -->
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=EB+Garamond&display=swap">
 </head>
 <body>
-    <!-- Main content container -->
+    <div class="top-nav">
+        <a href="about.html">About</a>
+        <a href="source.html">Source</a>
+        <a href="lecture.html">19th PTS I.B. Horner Lecture</a>
+    </div>
     <div class="container">
-        <!-- Page title -->
         <h1>Pali Cosmological Texts</h1>
-        <!-- Link to another page -->
         <a href="arunavatisangaha.html">Aruṇavatisaṅgaha</a>
-        <!-- Link to another page with line space -->
         <a href="lokuppatti.html">Lokuppatti</a>
-        <!-- Link to another page with line space -->
         <a href="lokasanthanajotaratanaganthi.html">Lokasaṇṭhānajotaratanagaṇṭhi</a>
-        <!-- Link to another page with line space -->
         <a href="okasalokadipani.html">Okāsalokadīpanī</a>
-        <!-- Link to another page with line space -->
         <a href="pancagatidipani.html">Pañcagatidīpanī</a>
     </div>
 </body>
 </html>
-
