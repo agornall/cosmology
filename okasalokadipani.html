@@ -34,6 +34,10 @@
             display: block;
             margin-bottom: 20px;
         }
+        pre sup { /* Style for line number in superscript */
+            font-size: 0.75em; /* Smaller font size for superscript */
+            color: #00695c; /* Slightly different color for emphasis */
+        }
     </style>
 </head>
 <body>
@@ -59,6 +63,12 @@
                         text += '<span class="tei-app">' + node.textContent + '</span>';
                     } else if (node.nodeName === 'title') {
                         text += '<span class="tei-title">' + node.textContent + '</span>';
+                    } else if (node.nodeName === 'lb') {
+                        // Check if the lb element has an 'n' attribute for the line number
+                        let lineNumber = node.getAttribute('n');
+                        if (lineNumber) {
+                            text += '<sup>[' + lineNumber + ']</sup>'; // Insert line number in superscript
+                        }
                     } else {
                         for (let childNode of node.childNodes) {
                             text += extractText(childNode);
