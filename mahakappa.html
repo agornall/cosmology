@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TEI XML Viewer</title>
+    <!-- Link to your custom stylesheet for the EB Garamond font -->
+    <link rel="stylesheet" href="fonts/stylesheet.css">
+    <style>
+        body {
+            font-family: 'EB Garamond', serif; /* Now using your custom font */
+            background-color: #e0f2f1;
+            color: #004d40;
+            margin: 0;
+            padding: 20px;
+        }
+        pre {
+            white-space: pre-wrap; /* Preserve line breaks */
+            font-size: 1.5rem;
+        }
+        /* Custom styles for TEI elements */
+        pre .tei-head {
+            font-size: 1.5rem;
+            font-variant: underline;
+        }
+        pre .tei-app {
+            font-size: 1rem;
+            font-style: italic;
+        }
+        pre .tei-title {
+            font-size: 2rem;
+            font-weight: bold;
+            text-align: center;
+            display: block;
+            margin-bottom: 20px;
+        }
+    </style>
+</head>
+<body>
+    <pre id="xml-content"></pre>
+
+    <script>
+        fetch('texts-xml/mahakappa.xml') // Update the file path here
+            .then(response => response.text())
+            .then(data => {
+                // Parse the XML content
+                let parser = new DOMParser();
+                let xmlDoc = parser.parseFromString(data, "text/xml");
+
+                // Function to recursively extract text content from XML nodes
+                function extractText(node) {
+                    let text = '';
+
+                    if (node.nodeType === Node.TEXT_NODE) {
+                        text += node.textContent;
+                    } else if (node.nodeName === 'head') {
+                        text += '<span class="tei-head">' + node.textContent + '</span>';
+                    } else if (node.nodeName === 'app') {
+                        text += '<span class="tei-app">' + node.textContent + '</span>';
+                    } else if (node.nodeName === 'title') {
+                        text += '<span class="tei-title">' + node.textContent + '</span>';
+                    } else {
+                        for (let childNode of node.childNodes) {
+                            text += extractText(childNode);
+                        }
+                    }
+
+                    return text;
+                }
+
+                // Extract text content from the entire XML document
+                let textContent = extractText(xmlDoc);
+
+                // Set the extracted text content to the pre element
+                let xmlContentElement = document.getElementById('xml-content');
+                xmlContentElement.innerHTML = textContent.trim();
+                xmlContentElement.style.fontFamily = "'EB Garamond', serif";
+            })
+            .catch(error => {
+                console.error('Error fetching XML file:', error);
+            });
+    </script>
+</body>
+</html>
