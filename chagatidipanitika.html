@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TEI XML Viewer</title>
+    <!-- Link to your custom stylesheet for the EB Garamond font -->
+    <link rel="stylesheet" href="fonts/stylesheet.css">
+    <style>
+        body {
+            font-family: 'EB Garamond', serif; /* Custom font */
+            background-color: #e0f2f1;
+            color: #004d40;
+            margin: 0;
+            padding: 20px;
+        }
+        pre {
+            white-space: pre-wrap; /* Preserve line breaks */
+            font-size: 1.5rem;
+        }
+        /* TEI-specific styles */
+        pre .tei-head {
+            font-size: 1.5rem;
+            font-variant: underline;
+        }
+        pre .tei-app {
+            font-size: 1rem;
+            font-style: italic;
+        }
+        pre .tei-title {
+            font-size: 2rem;
+            font-weight: bold;
+            text-align: center;
+            display: block;
+            margin-bottom: 20px;
+        }
+        /* Hyperlink styles */
+        a {
+            color: #00796b;
+            text-decoration: underline;
+        }
+        a:hover {
+            color: #004d40;
+            text-decoration: none;
+        }
+    </style>
+</head>
+<body>
+    <pre id="xml-content"></pre>
+
+    <script>
+        fetch('texts-xml/arunavatisangaha.xml') // Update path to your XML file
+            .then(response => response.text())
+            .then(data => {
+                // Parse the XML content
+                let parser = new DOMParser();
+                let xmlDoc = parser.parseFromString(data, "text/xml");
+
+                // Function to recursively extract text content from XML nodes
+                function extractText(node) {
+                    let text = '';
+
+                    if (node.nodeType === Node.TEXT_NODE) {
+                        text += node.textContent;
+                    } else if (node.nodeName === 'head') {
+                        text += '<span class="tei-head">' + node.textContent + '</span>';
+                    } else if (node.nodeName === 'app') {
+                        text += '<span class="tei-app">' + node.textContent + '</span>';
+                    } else if (node.nodeName === 'title') {
+                        text += '<span class="tei-title">' + node.textContent + '</span>';
+                    } else if (node.nodeName === 'ref') {
+                        // Handle TEI <ref> elements as clickable links
+                        const href = node.getAttribute('target') || '#';
+                        text += `<a href="${href}" target="_blank">${node.textContent}</a>`;
+                    } else if (node.nodeName === 'a') {
+                        // Handle HTML <a> links as well
+                        const href = node.getAttribute('href') || '#';
+                        text += `<a href="${href}" target="_blank">${node.textContent}</a>`;
+                    } else {
+                        for (let childNode of node.childNodes) {
+                            text += extractText(childNode);
+                        }
+                    }
+
+                    return text;
+                }
+
+                // Extract text content from the XML document
+                let textContent = extractText(xmlDoc);
+
+                // Display the extracted text
+                let xmlContentElement = document.getElementById('xml-content');
+                xmlContentElement.innerHTML = textContent.trim();
+                xmlContentElement.style.fontFamily = "'EB Garamond', serif";
+            })
+            .catch(error => {
+                console.error('Error fetching XML file:', error);
+            });
+    </script>
+</body>
+</html>
