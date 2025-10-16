@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Project Publications</title>
+    <!-- EB Garamond font -->
+    <link rel="stylesheet" href="fonts/stylesheet.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: 'EB Garamond', serif;
+            background-color: #e0f2f1;
+            color: #004d40;
+            text-align: center;
+        }
+
+        /* Top navigation bar (same as About page) */
+        .top-nav {
+            width: 100%;
+            text-align: center;
+            padding: 20px 0;
+            background-color: #e0f2f1;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+        .top-nav a {
+            margin: 0 15px;
+            font-size: 1rem;
+            text-transform: uppercase;
+            text-decoration: none;
+            color: #004d40;
+        }
+        .top-nav a:hover,
+        .top-nav a:focus {
+            text-decoration: underline;
+            color: #00796b;
+        }
+
+        /* Container for the whole page content */
+        .container {
+            width: 90%;
+            margin: 30px auto;
+            padding: 20px 40px;
+            background-color: #ffffff;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            border-radius: 10px;
+            text-align: left;
+        }
+
+        h1, h2 {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        h1 {
+            font-size: 2.5rem;
+        }
+        h2 {
+            font-size: 1.8rem;
+            color: #00695c;
+        }
+
+        /* Individual publication boxes */
+        .publication {
+            background-color: #ffffff;
+            border: 1px solid #c8e6c9;
+            box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+            border-radius: 10px;
+            padding: 20px;
+            margin: 20px 0;
+        }
+
+        .pub-ref {
+            font-size: 1.2rem;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+
+        .pub-link {
+            display: inline-block;
+            margin-bottom: 10px;
+            font-size: 1rem;
+            color: #00796b;
+            text-decoration: underline;
+        }
+        .pub-link:hover {
+            color: #004d40;
+        }
+
+        .pub-abstract {
+            font-size: 1.1rem;
+            font-style: italic;
+            color: #004d40;
+            line-height: 1.6;
+        }
+    </style>
+</head>
+<body>
+    <div class="top-nav">
+        <a href="index.html">Home</a>
+        <a href="about.html">About</a>
+        <a href="https://github.com/agornall/cosmology/tree/main/texts-xml">Source</a>
+        <a href="lecture.html">I.B. Horner Lecture</a>
+        <a href="publications.html">Publications</a>
+    </div>
+
+    <div class="container">
+        <h1>Project Publications</h1>
+        <h2>Buddhist Cosmology and Ecology Research</h2>
+
+        <!-- Publication 1 -->
+        <div class="publication">
+            <div class="pub-ref">
+                Gornall, Alastair. “Mapping the Moral Cosmos: Early Modern Buddhist
+                Cosmographies in Southeast Asia.” <em>History of Religions</em> 63, no. 3 (2024): 289–321.
+            </div>
+            <a class="pub-link" href="https://doi.org/10.xxxx/hor.2024.63.3.289" target="_blank">View online</a>
+            <div class="pub-abstract">
+                This article examines early modern Pali cosmographical texts from Myanmar and
+                Thailand, exploring how they re-imagined the moral structure of the world through
+                Buddhist ethical cosmology and local geographical imagination.
+            </div>
+        </div>
+
+        <!-- Publication 2 -->
+        <div class="publication">
+            <div class="pub-ref">
+                Gornall, Alastair. “The Light on the Six Realms: Ethics and Rebirth in the
+                <em>Chagatidīpanīṭīkā</em>.” <em>Journal of the Pali Text Society</em> 44 (2025): 57–94.
+            </div>
+            <a class="pub-link" href="https://www.palitextsociety.org/" target="_blank">Publisher link</a>
+            <div class="pub-abstract">
+                A critical edition and translation of the <em>Chagatidīpanīṭīkā</em>, one of the earliest
+                Southeast Asian works on Buddhist ethics, situating it within broader intellectual
+                developments in Theravāda scholasticism.
+            </div>
+        </div>
+
+        <!-- Publication 3 -->
+        <div class="publication">
+            <div class="pub-ref">
+                Gornall, Alastair. “Ecological Thought in Pre-colonial Buddhist Southeast Asia.”
+                <em>Religions</em> 16, no. 4 (2025).
+            </div>
+            <div class="pub-abstract">
+                This paper reconstructs early Southeast Asian Buddhist conceptions of the natural
+                environment, showing how cosmological and moral ideas shaped pre-modern ecological
+                reasoning and human–environment relations.
+            </div>
+        </div>
+    </div>
+</body>
+</html>
