@@ -65,7 +65,7 @@
       font-size: 1.35rem;
       position: relative;
       text-align: left;
-      white-space: normal; /* <-- run lines together (no hard line breaks) */
+      white-space: normal;
     }
     .leaf .folio {
       position: absolute;
@@ -82,7 +82,6 @@
     }
     .leaf a:hover { color: var(--ink); }
 
-    /* Superscript style for <lb n="…"> */
     sup {
       font-size: 0.75em;
       color: #00695c;
@@ -112,7 +111,6 @@
         const parser = new DOMParser();
         const xmlDoc = parser.parseFromString(str, 'text/xml');
 
-        // Namespace-agnostic element search by localName
         const byLocal = (root, name) =>
           Array.from(root.getElementsByTagName('*')).filter(e => e.localName === name);
 
@@ -120,20 +118,17 @@
         const textEl    = byLocal(xmlDoc, 'text')[0] || xmlDoc;
         const bodyEl    = byLocal(textEl, 'body')[0] || textEl;
 
-        // 1) Render fileDesc inside publications-style container
+        // 1) Render fileDesc in a box, no heading
         if (fileDescEl) {
           document.getElementById('filedesc').innerHTML =
-            `<div class="container">
-               <h2>File Description</h2>
-               ${renderNode(fileDescEl)}
-             </div>`;
+            `<div class="container">${renderNode(fileDescEl)}</div>`;
         }
 
-        // 2) Build palmleaf boxes for paragraphs within <text><body> only
+        // 2) Render body paragraphs
         const bodyNodes = bodyEl.getElementsByTagName('*');
         const pagesDiv = document.getElementById('pages');
-
         let currentFolio = '';
+
         for (const node of bodyNodes) {
           if (node.localName === 'pb') {
             const n = node.getAttribute('n');
@@ -161,7 +156,6 @@
 
       switch (name) {
         case 'lb': {
-          // Inline line break marker: add a space and optional superscript number
           const n = node.getAttribute('n');
           return ` ${n ? `<sup>[${escapeHtml(n)}]</sup>` : ''}`;
         }
@@ -172,7 +166,7 @@
         case 'title':  return `<h1>${renderChildren(node)}</h1>`;
         case 'head':   return `<strong>${renderChildren(node)}</strong>`;
         case 'app':    return `<em>${renderChildren(node)}</em>`;
-        case 'p':      return renderChildren(node); // keep inline; the .leaf provides block layout
+        case 'p':      return renderChildren(node);
         default:       return renderChildren(node);
       }
     }
