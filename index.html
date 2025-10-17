@@ -1,88 +1,282 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Pali Cosmological Texts</title>
-    <!-- Replace Google Fonts link with your custom stylesheet link -->
-    <link rel="stylesheet" href="fonts/stylesheet.css">
-    <style>
-        body {
-            margin: 0;
-            padding: 0;
-            font-family: 'EB Garamond', serif; /* Now using your custom font */
-            background-color: #e0f2f1;
-        }
-        .container {
-            width: 100%;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            text-align: center;
-            padding-top: 50px;
-        }
-        h1 {
-            font-size: 2rem;
-            color: #004d40;
-        }
-        a {
-            text-decoration: none;
-            color: #004d40;
-            font-size: 1.5rem;
-            margin-top: 20px;
-        }
-        .top-nav {
-            width: 100%;
-            text-align: center;
-            padding: 20px 0;
-            background-color: #e0f2f1;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-        }
-        .top-nav a {
-            margin: 0 15px;
-            font-size: 1rem;
-            text-transform: uppercase;
-            text-decoration: none;
-            color: #004d40;
-        }
-        .top-nav a:hover, .top-nav a:focus {
-            text-decoration: underline;
-            color: #00796b;
-        }
-        img {
-            max-width: 20%; /* Smaller image size */
-            height: auto; /* Maintain aspect ratio */
-            margin-top: 50px; /* Space between the link and image */
-            margin-bottom: 50px; /* Increased space below the image */
-        }
-        .header {
-            width: 60%; /* Adjust this as needed to match your header width */
-            margin: 0 auto; /* Center the header */
-        }
-    </style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Pali Cosmological Texts</title>
+  <link rel="stylesheet" href="fonts/stylesheet.css" />
+  <style>
+    :root{
+      --bg: #e0f2f1;
+      --ink: #004d40;
+      --ink-2:#00695c;
+      --accent:#00796b;
+      --leaf-1:#fffde7;
+      --leaf-2:#fff9c4;
+      --leaf-3:#fff8e1;
+      --leaf-4:#fff3c6;
+      --leaf-border:#c0a85a;
+      --shadow-1: 0 2px 5px rgba(0,0,0,0.1);
+      --shadow-2: 2px 4px 10px rgba(0,0,0,0.3);
+      --radius: 12px;
+    }
+
+    /* Base */
+    html,body{margin:0;padding:0}
+    body{
+      font-family:'EB Garamond', serif;
+      background:var(--bg);
+      color:var(--ink);
+      text-align:center;
+    }
+
+    /* Top nav (as-is) */
+    .top-nav{
+      width:100%;
+      text-align:center;
+      padding:20px 0;
+      background:var(--bg);
+      box-shadow:var(--shadow-1);
+    }
+    .top-nav a{
+      margin:0 15px;
+      font-size:1rem;
+      text-transform:uppercase;
+      text-decoration:none;
+      color:var(--ink);
+    }
+    .top-nav a:hover,.top-nav a:focus{
+      text-decoration:underline;
+      color:var(--accent);
+      outline:none;
+    }
+
+    /* Cover leaf */
+    .cover{
+      background:linear-gradient(90deg,var(--leaf-1) 0%,var(--leaf-2) 100%);
+      border:1px solid var(--leaf-border);
+      border-radius:var(--radius);
+      box-shadow:var(--shadow-2);
+      width:min(900px,70%);
+      margin:60px auto 24px;
+      padding:36px 24px;
+      transition:transform .2s ease, background .3s ease;
+    }
+    .cover:hover{ transform:translateY(-2px); }
+    .cover-title{
+      margin:0;
+      font-size:2rem;
+      letter-spacing:.3px;
+      color:var(--ink);
+    }
+
+    /* Use a real button for accessibility */
+    .cover button{
+      all:unset;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      gap:.6rem;
+      width:100%;
+      cursor:pointer;
+    }
+    .chevron{
+      display:inline-block;
+      transition:transform .3s ease;
+      font-size:1.2rem;
+    }
+    .cover[aria-expanded="true"] .chevron{
+      transform:rotate(180deg);
+    }
+    .cover:focus-within{
+      outline:2px solid var(--accent);
+      outline-offset:4px;
+    }
+
+    /* Concertina wrapper */
+    .bundle{
+      width:min(900px,75%);
+      margin:0 auto 32px;
+    }
+
+    /* Leaf tiles */
+    .leaf{
+      background:linear-gradient(90deg,var(--leaf-3) 0%,var(--leaf-4) 100%);
+      border:1px solid var(--leaf-border);
+      border-radius:10px;
+      box-shadow:1px 2px 6px rgba(0,0,0,0.2);
+      margin:10px auto;
+      padding:18px;
+      font-size:1.35rem;
+      transition:background .2s ease, transform .2s ease;
+      transform-origin: top;
+      opacity:0;           /* start hidden (JS will reveal with stagger) */
+      transform:translateY(-6px);
+    }
+    .leaf.ready{
+      opacity:1;
+      transform:translateY(0);
+      transition: background .2s ease, transform .2s ease, opacity .35s ease;
+    }
+    .leaf:hover{ transform:translateY(-2px); }
+    .leaf a{
+      text-decoration:none;
+      color:var(--ink);
+    }
+    .leaf a:hover{ color:var(--accent); }
+
+    img.hero{
+      max-width:20%;
+      height:auto;
+      margin:40px 0 60px;
+    }
+
+    /* Reduced motion respect */
+    @media (prefers-reduced-motion: reduce){
+      .cover, .leaf{ transition:none !important; }
+    }
+
+    /* No-JS fallback: show everything */
+    .no-js .bundle{
+      display:block !important;
+    }
+    .no-js .leaf{
+      opacity:1 !important;
+      transform:none !important;
+    }
+
+    /* Focus-visible for keyboard nav */
+    a:focus-visible, button:focus-visible{
+      outline:2px solid var(--accent);
+      outline-offset:3px;
+      border-radius:6px;
+    }
+  </style>
 </head>
-<body>
-    <div class="top-nav">
-        <a href="index.html">Home</a>
-        <a href="about.html">About</a>
-        <a href="https://github.com/agornall/cosmology/tree/main/texts-xml">Source</a>
-        <a href="lecture.html">I.B. Horner Lecture</a>
-        <a href="publications.html">Publications</a>
-    </div>
-    <div class="container">
-        <div class="header">
-            <h1>Pali Cosmological Texts</h1>
-        </div>
-        <a href="arunavatisangaha.html">Aruṇavatisaṅgaha</a>
-        <a href="cakkavaladipani1-3.html">Cakkavāḷadīpanī I-III</a>
-        <a href="candasuriyagatidipani.html">Candasuriyagatidīpanī</a>
-        <a href="chagatidipanitika.html">Chagatidīpanīṭīkā</a>
-        <a href="lokuppatti.html">Lokuppatti</a>
-        <a href="lokasanthanajotaratanaganthi.html">Lokasaṇṭhānajotaratanagaṇṭhi</a>
-        <a href="mahakappa.html">Mahākappalokasaṇṭhānapaññatti</a>
-        <a href="okasalokadipani.html">Okāsalokadīpanī</a>
-        <a href="pancagatidipani.html">Pañcagatidīpanī</a>
-        <img src="manuscript_chest_detail.jpg" alt="Detail of a Manuscript Chest">
-    </div>
+<body class="no-js">
+  <div class="top-nav">
+    <a href="index.html">Home</a>
+    <a href="about.html">About</a>
+    <a href="https://github.com/agornall/cosmology/tree/main/texts-xml">Source</a>
+    <a href="lecture.html">I.B. Horner Lecture</a>
+    <a href="publications.html">Publications</a>
+  </div>
+
+  <!-- Cover leaf (button inside for ARIA/keyboard) -->
+  <section
+    id="cover"
+    class="cover"
+    role="region"
+    aria-labelledby="cover-title"
+    aria-expanded="false">
+    <button type="button" id="coverBtn" aria-controls="bundle" aria-expanded="false">
+      <h1 id="cover-title" class="cover-title">Pali Cosmological Texts</h1>
+      <span class="chevron" aria-hidden="true">▾</span>
+    </button>
+  </section>
+
+  <!-- Hidden bundle -->
+  <section id="bundle" class="bundle" hidden>
+    <div class="leaf"><a href="arunavatisangaha.html">Aruṇavatisaṅgaha</a></div>
+    <div class="leaf"><a href="cakkavaladipani1-3.html">Cakkavāḷadīpanī I–III</a></div>
+    <div class="leaf"><a href="candasuriyagatidipani.html">Candasuriyagatidīpanī</a></div>
+    <div class="leaf"><a href="chagatidipanitika.html">Chagatidīpanīṭīkā</a></div>
+    <div class="leaf"><a href="lokuppatti.html">Lokuppatti</a></div>
+    <div class="leaf"><a href="lokasanthanajotaratanaganthi.html">Lokasaṇṭhānajotaratanagaṇṭhi</a></div>
+    <div class="leaf"><a href="mahakappa.html">Mahākappalokasaṇṭhānapaññatti</a></div>
+    <div class="leaf"><a href="okasalokadipani.html">Okāsalokadīpanī</a></div>
+    <div class="leaf"><a href="pancagatidipani.html">Pañcagatidīpanī</a></div>
+  </section>
+
+  <img class="hero" src="manuscript_chest_detail.jpg" alt="Detail of a Manuscript Chest" />
+
+  <script>
+    // Progressive enhancement: remove no-js class
+    document.body.classList.remove('no-js');
+
+    const cover     = document.getElementById('cover');
+    const coverBtn  = document.getElementById('coverBtn');
+    const bundle    = document.getElementById('bundle');
+    const leaves    = Array.from(bundle.querySelectorAll('.leaf'));
+
+    // Helper: smooth show/hide with measured height (no fixed max-height)
+    function expand(el){
+      el.hidden = false;
+      const start = el.offsetHeight;      // 0 if hidden
+      el.style.height = 'auto';
+      const end = el.scrollHeight + 'px';
+      el.style.height = start + 'px';
+      requestAnimationFrame(() => {
+        el.style.transition = 'height 500ms ease';
+        el.style.height = end;
+      });
+      el.addEventListener('transitionend', function tidy(e){
+        if (e.propertyName !== 'height') return;
+        el.style.height = '';
+        el.style.transition = '';
+        el.removeEventListener('transitionend', tidy);
+      });
+    }
+    function collapse(el){
+      const start = el.scrollHeight + 'px';
+      el.style.height = start;
+      requestAnimationFrame(() => {
+        el.style.transition = 'height 450ms ease';
+        el.style.height = '0px';
+      });
+      el.addEventListener('transitionend', function tidy(e){
+        if (e.propertyName !== 'height') return;
+        el.hidden = true;
+        el.style.height = '';
+        el.style.transition = '';
+        el.removeEventListener('transitionend', tidy);
+      });
+    }
+
+    // Staggered reveal of leaves for a “fan out” effect
+    function staggerIn(items, baseDelay=70){
+      items.forEach((leaf, i) => {
+        leaf.style.transitionDelay = (i * baseDelay) + 'ms';
+        // trigger in next frame
+        requestAnimationFrame(() => leaf.classList.add('ready'));
+      });
+    }
+    function resetStagger(items){
+      items.forEach(leaf => {
+        leaf.classList.remove('ready');
+        leaf.style.transitionDelay = '';
+      });
+    }
+
+    // Toggle logic (click, Enter, or Space)
+    function toggleConcertina(){
+      const expanded = cover.getAttribute('aria-expanded') === 'true';
+      if (expanded){
+        cover.setAttribute('aria-expanded','false');
+        coverBtn.setAttribute('aria-expanded','false');
+        collapse(bundle);
+        resetStagger(leaves);
+      } else {
+        cover.setAttribute('aria-expanded','true');
+        coverBtn.setAttribute('aria-expanded','true');
+        expand(bundle);
+        staggerIn(leaves, 60);
+      }
+    }
+
+    coverBtn.addEventListener('click', toggleConcertina);
+    coverBtn.addEventListener('keydown', (e) => {
+      if (e.key === 'Enter' || e.key === ' ') {
+        e.preventDefault();
+        toggleConcertina();
+      }
+    });
+
+    // Respect reduced motion: if user prefers reduced motion, skip stagger
+    const mq = window.matchMedia('(prefers-reduced-motion: reduce)');
+    if (mq.matches){
+      staggerIn = (items)=> items.forEach(l => l.classList.add('ready'));
+    }
+  </script>
 </body>
 </html>
