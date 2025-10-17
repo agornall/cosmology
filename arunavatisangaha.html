@@ -1,199 +1,84 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>TEI XML Viewer</title>
-  <link rel="stylesheet" href="fonts/stylesheet.css"/>
-  <style>
-    /* ===== publications.html look & feel ===== */
-    * { margin: 0; padding: 0; box-sizing: border-box; }
-    body {
-      font-family: 'EB Garamond', serif;
-      background-color: #e0f2f1;
-      color: #004d40;
-      text-align: center;
-    }
-    .top-nav {
-      width: 100%;
-      text-align: center;
-      padding: 20px 0;
-      background-color: #e0f2f1;
-      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-    }
-    .top-nav a {
-      margin: 0 15px;
-      font-size: 1rem;
-      text-transform: uppercase;
-      text-decoration: none;
-      color: #004d40;
-    }
-    .top-nav a:hover, .top-nav a:focus {
-      text-decoration: underline;
-      color: #00796b;
-    }
-
-    .container {
-      width: 90%;
-      margin: 30px auto;
-      padding: 20px 40px;
-      background-color: #ffffff;
-      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-      border-radius: 10px;
-      text-align: left;
-    }
-    h1, h2 { text-align: center; margin-bottom: 20px; }
-    h1 { font-size: 2.5rem; }
-    h2 { font-size: 1.8rem; color: #00695c; }
-
-    /* ===== Palmleaf boxes for body paragraphs ===== */
-    :root {
-      --leaf-3: #fff8e1;
-      --leaf-4: #fff3c6;
-      --leaf-border: #c0a85a;
-      --ink: #004d40;
-      --accent: #00796b;
-    }
-    .leaf {
-      background: linear-gradient(90deg, var(--leaf-3) 0%, var(--leaf-4) 100%);
-      border: 1px solid var(--leaf-border);
-      border-radius: 10px;
-      box-shadow: 1px 2px 6px rgba(0,0,0,0.2);
-      width: 80%;
-      margin: 20px auto;
-      padding: 25px 25px 25px 60px; /* space for folio label */
-      font-size: 1.35rem;
-      position: relative;
-      text-align: left;
-      white-space: normal;
-    }
-    .leaf .folio {
-      position: absolute;
-      left: 15px;
-      top: 50%;
-      transform: translateY(-50%);
-      font-weight: bold;
-      font-size: 0.9rem;
-      color: var(--ink);
-    }
-    .leaf a {
-      text-decoration: underline;
-      color: var(--accent);
-    }
-    .leaf a:hover { color: var(--ink); }
-
-    sup {
-      font-size: 0.75em;
-      color: #00695c;
-    }
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TEI XML Viewer</title>
+    <!-- Link to your custom stylesheet for the EB Garamond font -->
+    <link rel="stylesheet" href="fonts/stylesheet.css">
+    <style>
+        body {
+            font-family: 'EB Garamond', serif; /* Now using your custom font */
+            background-color: #e0f2f1;
+            color: #004d40;
+            margin: 0;
+            padding: 20px;
+        }
+        pre {
+            white-space: pre-wrap; /* Preserve line breaks */
+            font-size: 1.5rem;
+        }
+        /* Custom styles for TEI elements */
+        pre .tei-head {
+            font-size: 1.5rem;
+            font-variant: underline;
+        }
+        pre .tei-app {
+            font-size: 1rem;
+            font-style: italic;
+        }
+        pre .tei-title {
+            font-size: 2rem;
+            font-weight: bold;
+            text-align: center;
+            display: block;
+            margin-bottom: 20px;
+        }
+    </style>
 </head>
 <body>
-  <div class="top-nav">
-    <a href="index.html">Home</a>
-    <a href="about.html">About</a>
-    <a href="https://github.com/agornall/cosmology/tree/main/texts-xml">Source</a>
-    <a href="lecture.html">I.B. Horner Lecture</a>
-    <a href="publications.html">Publications</a>
-  </div>
+    <pre id="xml-content"></pre>
 
-  <!-- File description box -->
-  <div id="filedesc"></div>
-  <!-- Body paragraphs as palmleaf boxes -->
-  <div id="pages"></div>
+    <script>
+        fetch('texts-xml/arunavatisangaha.xml') // Update the file path here
+            .then(response => response.text())
+            .then(data => {
+                // Parse the XML content
+                let parser = new DOMParser();
+                let xmlDoc = parser.parseFromString(data, "text/xml");
 
-  <script>
-    const XML_PATH = 'texts-xml/arunavatisangaha.xml';
+                // Function to recursively extract text content from XML nodes
+                function extractText(node) {
+                    let text = '';
 
-    fetch(XML_PATH)
-      .then(res => res.text())
-      .then(str => {
-        const parser = new DOMParser();
-        const xmlDoc = parser.parseFromString(str, 'text/xml');
+                    if (node.nodeType === Node.TEXT_NODE) {
+                        text += node.textContent;
+                    } else if (node.nodeName === 'head') {
+                        text += '<span class="tei-head">' + node.textContent + '</span>';
+                    } else if (node.nodeName === 'app') {
+                        text += '<span class="tei-app">' + node.textContent + '</span>';
+                    } else if (node.nodeName === 'title') {
+                        text += '<span class="tei-title">' + node.textContent + '</span>';
+                    } else {
+                        for (let childNode of node.childNodes) {
+                            text += extractText(childNode);
+                        }
+                    }
 
-        const byLocal = (root, name) =>
-          Array.from(root.getElementsByTagName('*')).filter(e => e.localName === name);
+                    return text;
+                }
 
-        const fileDescEl = byLocal(xmlDoc, 'fileDesc')[0];
-        const textEl    = byLocal(xmlDoc, 'text')[0] || xmlDoc;
-        const bodyEl    = byLocal(textEl, 'body')[0] || textEl;
+                // Extract text content from the entire XML document
+                let textContent = extractText(xmlDoc);
 
-        // 1) Render fileDesc in a box, no heading
-        if (fileDescEl) {
-          document.getElementById('filedesc').innerHTML =
-            `<div class="container">${renderNode(fileDescEl)}</div>`;
-        }
-
-        // 2) Render body paragraphs
-        const bodyNodes = bodyEl.getElementsByTagName('*');
-        const pagesDiv = document.getElementById('pages');
-        let currentFolio = '';
-
-        for (const node of bodyNodes) {
-          if (node.localName === 'pb') {
-            const n = node.getAttribute('n');
-            if (n) currentFolio = n;
-          }
-          if (node.localName === 'p') {
-            const html = renderNode(node);
-            const fol  = currentFolio ? `<span class="folio">${escapeHtml(currentFolio)}</span>` : '';
-            pagesDiv.insertAdjacentHTML('beforeend', `<div class="leaf">${fol}${html}</div>`);
-          }
-        }
-      })
-      .catch(err => {
-        console.error('Error fetching XML:', err);
-        document.getElementById('pages').textContent = 'Unable to load manuscript.';
-      });
-
-    // -------- Rendering helpers --------
-    function renderNode(node) {
-      if (node.nodeType === Node.TEXT_NODE) {
-        return escapeHtml(node.textContent);
-      }
-
-      const name = node.localName;
-
-      switch (name) {
-        case 'lb': {
-          const n = node.getAttribute('n');
-          return ` ${n ? `<sup>[${escapeHtml(n)}]</sup>` : ''}`;
-        }
-        case 'ref': {
-          const href = node.getAttribute('target') || node.getAttribute('href') || '#';
-          return `<a href="${escapeAttr(href)}" target="_blank" rel="noopener">${renderChildren(node)}</a>`;
-        }
-        case 'title':  return `<h1>${renderChildren(node)}</h1>`;
-        case 'head':   return `<strong>${renderChildren(node)}</strong>`;
-        case 'app':    return `<em>${renderChildren(node)}</em>`;
-        case 'p':      return renderChildren(node);
-        default:       return renderChildren(node);
-      }
-    }
-
-    function renderChildren(el) {
-      let out = '';
-      for (const child of el.childNodes) {
-        out += renderNode(child);
-      }
-      return out;
-    }
-
-    function escapeHtml(s) {
-      return String(s)
-        .replaceAll('&', '&amp;')
-        .replaceAll('<', '&lt;')
-        .replaceAll('>', '&gt;')
-        .replaceAll('"', '&quot;');
-    }
-    function escapeAttr(s) {
-      return String(s)
-        .replaceAll('&', '&amp;')
-        .replaceAll('<', '&lt;')
-        .replaceAll('>', '&gt;')
-        .replaceAll('"', '&quot;')
-        .replaceAll("'", '&#39;');
-    }
-  </script>
+                // Set the extracted text content to the pre element
+                let xmlContentElement = document.getElementById('xml-content');
+                xmlContentElement.innerHTML = textContent.trim();
+                xmlContentElement.style.fontFamily = "'EB Garamond', serif";
+            })
+            .catch(error => {
+                console.error('Error fetching XML file:', error);
+            });
+    </script>
 </body>
 </html>
