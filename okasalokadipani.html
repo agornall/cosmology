@@ -1,94 +1,300 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>TEI XML Viewer</title>
-    <!-- Link to your custom stylesheet for the EB Garamond font -->
-    <link rel="stylesheet" href="fonts/stylesheet.css">
-    <style>
-        body {
-            font-family: 'EB Garamond', serif; /* Now using your custom font */
-            background-color: #e0f2f1;
-            color: #004d40;
-            margin: 0;
-            padding: 20px;
-        }
-        pre {
-            white-space: pre-wrap; /* Preserve line breaks */
-            font-size: 1.5rem;
-        }
-        /* Custom styles for TEI elements */
-        pre .tei-head {
-            font-size: 1.5rem;
-            font-variant: underline;
-        }
-        pre .tei-app {
-            font-size: 1rem;
-            font-style: italic;
-        }
-        pre .tei-title {
-            font-size: 2rem;
-            font-weight: bold;
-            text-align: center;
-            display: block;
-            margin-bottom: 20px;
-        }
-        pre sup { /* Style for line number in superscript */
-            font-size: 0.75em; /* Smaller font size for superscript */
-            color: #00695c; /* Slightly different color for emphasis */
-        }
-    </style>
+  <meta charset="UTF-8" />
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+  />
+  <title>TEI XML Viewer</title>
+  <!-- EB Garamond font -->
+  <link rel="stylesheet" href="fonts/stylesheet.css" />
+  <style>
+    :root {
+      --bg: #e0f2f1;
+      --ink: #004d40;
+      --accent: #00796b;
+      --leaf-1: #fffde7;
+      --leaf-2: #fff9c4;
+      --leaf-3: #fff8e1;
+      --leaf-4: #fff3c6;
+      --leaf-border: #c0a85a;
+      --shadow-1: 2px 4px 10px rgba(0, 0, 0, 0.25);
+      --shadow-2: 1px 2px 6px rgba(0, 0, 0, 0.18);
+      --radius: 12px;
+      --page-width: min(900px, 92vw);
+    }
+
+    body {
+      font-family: "EB Garamond", serif;
+      background-color: var(--bg);
+      color: var(--ink);
+      margin: 0;
+      padding: 20px 0 40px;
+    }
+
+    /* Page list wrapper */
+    #pages {
+      width: var(--page-width);
+      margin: 0 auto;
+      padding: 0 12px;
+    }
+
+    /* Palmleaf page card */
+    .leaf-page {
+      position: relative;
+      background: linear-gradient(90deg, var(--leaf-1) 0%, var(--leaf-2) 100%);
+      border: 1px solid var(--leaf-border);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow-1);
+      margin: 20px auto;
+      padding: 28px 22px 26px 38px; /* left padding allows for folio badge overlap */
+      overflow: visible;
+    }
+
+    /* Subtle “grain” overlay (optional, very light) */
+    .leaf-page::after {
+      content: "";
+      pointer-events: none;
+      position: absolute;
+      inset: 0;
+      background: repeating-linear-gradient(
+        0deg,
+        rgba(0, 0, 0, 0.02),
+        rgba(0, 0, 0, 0.02) 1px,
+        transparent 1px,
+        transparent 3px
+      );
+      border-radius: var(--radius);
+    }
+
+    /* Folio badge on the left edge, centered vertically */
+    .folio-badge {
+      position: absolute;
+      left: -1.8rem; /* peeks out beyond the leaf edge */
+      top: 50%;
+      transform: translateY(-50%);
+      background: linear-gradient(90deg, var(--leaf-3) 0%, var(--leaf-4) 100%);
+      border: 1px solid var(--leaf-border);
+      border-radius: 8px;
+      padding: 4px 8px;
+      font-weight: 700;
+      font-size: 0.95rem;
+      color: var(--ink);
+      box-shadow: var(--shadow-2);
+      min-width: 2.4rem;
+      text-align: center;
+    }
+
+    /* The TEI page’s text */
+    .leaf-content {
+      white-space: pre-wrap; /* preserve spacing and newlines we insert */
+      line-height: 1.6;
+      font-size: 1.2rem;
+      position: relative;
+      z-index: 1; /* above the grain overlay */
+    }
+
+    /* TEI-ish inline styles */
+    .tei-title {
+      font-size: 1.8rem;
+      font-weight: 700;
+      text-align: center;
+      display: block;
+      margin-bottom: 14px;
+    }
+    .tei-head {
+      font-size: 1.3rem;
+      text-decoration: underline;
+    }
+    .tei-app {
+      font-style: italic;
+      font-size: 1rem;
+    }
+
+    /* Line numbers from <lb n="…"/> */
+    .line-no {
+      font-size: 0.75em;
+      color: #00695c;
+      vertical-align: super;
+      margin-left: 4px;
+    }
+
+    /* Links from <ref target="…"> */
+    .leaf-content a {
+      color: var(--accent);
+      text-decoration: underline;
+    }
+    .leaf-content a:hover {
+      color: var(--ink);
+      text-decoration: none;
+    }
+  </style>
 </head>
 <body>
-    <pre id="xml-content"></pre>
+  <div id="pages" aria-live="polite"></div>
 
-    <script>
-        fetch('texts-xml/okasalokadipani.xml') // Update the file path here
-            .then(response => response.text())
-            .then(data => {
-                // Parse the XML content
-                let parser = new DOMParser();
-                let xmlDoc = parser.parseFromString(data, "text/xml");
+  <script>
+    // ------ Config: update path to your TEI XML file ------
+    const XML_PATH = "texts-xml/okasalokadipani.xml";
 
-                // Function to recursively extract text content from XML nodes
-                function extractText(node) {
-                    let text = '';
+    // TEI namespace (robust querying)
+    const TEI_NS = "http://www.tei-c.org/ns/1.0";
 
-                    if (node.nodeType === Node.TEXT_NODE) {
-                        text += node.textContent;
-                    } else if (node.nodeName === 'head') {
-                        text += '<span class="tei-head">' + node.textContent + '</span>';
-                    } else if (node.nodeName === 'app') {
-                        text += '<span class="tei-app">' + node.textContent + '</span>';
-                    } else if (node.nodeName === 'title') {
-                        text += '<span class="tei-title">' + node.textContent + '</span>';
-                    } else if (node.nodeName === 'lb') {
-                        // Check if the lb element has an 'n' attribute for the line number
-                        let lineNumber = node.getAttribute('n');
-                        if (lineNumber) {
-                            text += '<sup>[' + lineNumber + ']</sup>'; // Insert line number in superscript
-                        }
-                    } else {
-                        for (let childNode of node.childNodes) {
-                            text += extractText(childNode);
-                        }
-                    }
+    // Fetch and render
+    fetch(XML_PATH)
+      .then((r) => r.text())
+      .then((xmlStr) => {
+        const parser = new DOMParser();
+        const xmlDoc = parser.parseFromString(xmlStr, "text/xml");
 
-                    return text;
-                }
+        // Try to find the TEI <body>
+        let body =
+          xmlDoc.getElementsByTagNameNS(TEI_NS, "body")[0] ||
+          xmlDoc.getElementsByTagName("body")[0] ||
+          xmlDoc.documentElement;
 
-                // Extract text content from the entire XML document
-                let textContent = extractText(xmlDoc);
+        // Build pages by splitting on <pb n="…"/>
+        const pages = buildPages(body);
 
-                // Set the extracted text content to the pre element
-                let xmlContentElement = document.getElementById('xml-content');
-                xmlContentElement.innerHTML = textContent.trim();
-                xmlContentElement.style.fontFamily = "'EB Garamond', serif";
-            })
-            .catch(error => {
-                console.error('Error fetching XML file:', error);
-            });
-    </script>
+        // Render pages
+        const container = document.getElementById("pages");
+        container.innerHTML = pages
+          .map(
+            (p) => `
+            <article class="leaf-page">
+              <div class="folio-badge" title="Folio">${escapeHtml(p.folio || "")}</div>
+              <div class="leaf-content">${p.html}</div>
+            </article>`
+          )
+          .join("");
+      })
+      .catch((err) => {
+        console.error("Error fetching XML file:", err);
+        const container = document.getElementById("pages");
+        container.textContent = "Unable to load manuscript.";
+      });
+
+    // --------- Helpers ----------
+
+    // Escape plain text (used for folio label)
+    function escapeHtml(s) {
+      return String(s)
+        .replaceAll("&", "&amp;")
+        .replaceAll("<", "&lt;")
+        .replaceAll(">", "&gt;")
+        .replaceAll('"', "&quot;");
+    }
+
+    // Build an array of {folio, html} by walking the TEI tree
+    function buildPages(root) {
+      const pages = [];
+      let current = { folio: "", html: "" };
+
+      walk(root, (node) => {
+        const name = (node.localName || node.nodeName || "").toLowerCase();
+
+        // Start a new page on <pb>
+        if (name === "pb") {
+          const folio = node.getAttribute("n") || "";
+          // Push previous page if it has any content
+          if (current.html.trim() || current.folio) {
+            pages.push(current);
+          }
+          current = { folio, html: "" };
+          return; // do not render <pb> itself
+        }
+
+        // Append rendered content of this node
+        current.html += renderNode(node);
+      });
+
+      // Push the last page if any content
+      if (current.html.trim() || current.folio) {
+        pages.push(current);
+      }
+
+      // If no <pb> was found, put everything into a single leaf
+      if (pages.length === 0) {
+        pages.push({ folio: "", html: renderNode(root) });
+      }
+
+      return pages;
+    }
+
+    // Depth-first walk: visit element and all descendants
+    function walk(node, fn) {
+      // We want to *see* pb nodes in order, so handle element nodes only
+      if (node.nodeType === Node.ELEMENT_NODE) {
+        fn(node);
+        for (const child of node.childNodes) {
+          walk(child, fn);
+        }
+      } else if (node.nodeType === Node.TEXT_NODE) {
+        // We render text inside renderNode, not here.
+        fn(node);
+      }
+    }
+
+    // Render a node into HTML string (lightweight, inline-friendly)
+    function renderNode(node) {
+      if (node.nodeType === Node.TEXT_NODE) {
+        return escapeHtml(node.textContent);
+      }
+
+      const name = (node.localName || node.nodeName || "").toLowerCase();
+
+      switch (name) {
+        case "pb":
+          // handled in buildPages (split), nothing to output
+          return "";
+
+        case "lb": {
+          const n = node.getAttribute && node.getAttribute("n");
+          const num = n ? `<sup class="line-no">[${escapeHtml(n)}]</sup>` : "";
+          return `<br>${num}`;
+        }
+
+        case "title":
+          return `<span class="tei-title">${renderChildren(node)}</span>\n`;
+
+        case "head":
+          return `<span class="tei-head">${renderChildren(node)}</span>\n`;
+
+        case "app":
+          return `<span class="tei-app">${renderChildren(node)}</span>`;
+
+        case "ref": {
+          const href = node.getAttribute && (node.getAttribute("target") || node.getAttribute("href"));
+          const safeHref = href ? escapeAttribute(href) : "#";
+          return `<a href="${safeHref}" target="_blank" rel="noopener">${renderChildren(node)}</a>`;
+        }
+
+        // Treat paragraphs as inline content with an extra break after
+        case "p":
+          return `${renderChildren(node)}\n`;
+
+        default:
+          return renderChildren(node);
+      }
+    }
+
+    function renderChildren(el) {
+      let out = "";
+      for (const child of el.childNodes) {
+        out += renderNode(child);
+      }
+      return out;
+    }
+
+    function escapeAttribute(s) {
+      return String(s)
+        .replaceAll("&", "&amp;")
+        .replaceAll("<", "&lt;")
+        .replaceAll(">", "&gt;")
+        .replaceAll('"', "&quot;")
+        .replaceAll("'", "&#39;");
+    }
+  </script>
 </body>
 </html>
