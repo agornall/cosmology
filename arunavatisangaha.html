@@ -45,16 +45,18 @@
     h1 { font-size: 2.0rem; }
     h2 { font-size: 1.4rem; color: #00695c; }
 
-    /* ===== Page (Leaf) Boxes ===== */
+    /* ===== Palm-leaf Boxes ===== */
     :root {
-      --paper-bg: #fdfdfb;
-      --paper-border: #d0c8a5;
+      --leaf-3: #fff8e1;
+      --leaf-4: #fff3c6;
+      --leaf-border: #c0a85a;
       --ink: #004d40;
       --accent: #00796b;
     }
+
     .leaf {
-      background-color: var(--paper-bg);
-      border: 1px solid var(--paper-border);
+      background: linear-gradient(90deg, var(--leaf-3) 0%, var(--leaf-4) 100%);
+      border: 1px solid var(--leaf-border);
       border-radius: 8px;
       box-shadow: 1px 2px 6px rgba(0,0,0,0.15);
       width: 80%;
@@ -64,8 +66,9 @@
       position: relative;
       text-align: left;
       white-space: normal;
-      min-height: 60px; /* ensures empty pages still show a box */
+      min-height: 60px;
     }
+
     .leaf .folio {
       position: absolute;
       top: 10px;
@@ -74,6 +77,7 @@
       font-size: 0.9rem;
       color: var(--ink);
     }
+
     .leaf p {
       margin: 1em 0;
       line-height: 1.5em;
@@ -104,7 +108,6 @@
   <div id="pages"></div>
 
   <script>
-    // Optional: allow ?file=yourfile.xml
     const params = new URLSearchParams(location.search);
     const XML_PATH = params.get('file') || 'texts-xml/arunavatisangaha.xml';
 
@@ -121,17 +124,14 @@
         const textEl     = byLocal(xmlDoc, 'text')[0] || xmlDoc;
         const bodyEl     = byLocal(textEl, 'body')[0] || textEl;
 
-        // 1) Render file description (simple dump of fileDesc subtree)
         if (fileDescEl) {
           document.getElementById('filedesc').innerHTML =
             `<div class="container">${renderNode(fileDescEl)}</div>`;
         }
 
-        // 2) Find all <pb> in document order and build a leaf per pb
         const pbs = Array.from(bodyEl.getElementsByTagName('*')).filter(n => n.localName === 'pb');
         const pagesDiv = document.getElementById('pages');
 
-        // If no pb, fall back to a single box with entire body
         if (pbs.length === 0) {
           const html = renderChildren(bodyEl);
           pagesDiv.insertAdjacentHTML('beforeend', `<div class="leaf">${html}</div>`);
@@ -145,7 +145,6 @@
 
           const html = renderBetween(startPb, endPb, bodyEl);
           const fol  = `<span class="folio">${escapeHtml(folio)}</span>`;
-          // Create a box even if html is empty, to ensure every folio shows.
           pagesDiv.insertAdjacentHTML('beforeend', `<div class="leaf">${fol}${html || ''}</div>`);
         }
       })
@@ -154,7 +153,6 @@
         document.getElementById('pages').textContent = 'Unable to load manuscript.';
       });
 
-    /* ====== Paging helpers: render content after startPb until endPb ====== */
     function renderBetween(startPb, endPb, root) {
       const start = nextAfter(startPb, root);
       if (!start) return '';
@@ -164,13 +162,12 @@
       while (node && node !== endPb) {
         const { html: chunk, stopped } = renderNodeUntil(node, endPb, root);
         html += chunk;
-        if (stopped) break; // hit endPb somewhere inside
+        if (stopped) break;
         node = nextAfterSubtree(node, root);
       }
       return html;
     }
 
-    // Walk forward one node in document order (exclusive of n), constrained to root
     function nextAfter(n, root) {
       if (n.nextSibling) return n.nextSibling;
       let p = n.parentNode;
@@ -181,7 +178,6 @@
       return null;
     }
 
-    // Jump to the node after the entire subtree rooted at n
     function nextAfterSubtree(n, root) {
       if (n.nextSibling) return n.nextSibling;
       let p = n.parentNode;
@@ -192,30 +188,19 @@
       return null;
     }
 
-    /* ====== Recursive render that halts at endPb ====== */
     function renderNodeUntil(node, endPb, root) {
-      // Stop if we've arrived at the next page break
       if (node === endPb) return { html: '', stopped: true };
-
-      if (node.nodeType === Node.TEXT_NODE) {
+      if (node.nodeType === Node.TEXT_NODE)
         return { html: escapeHtml(node.textContent), stopped: false };
-      }
-
-      if (node.nodeType !== Node.ELEMENT_NODE) {
+      if (node.nodeType !== Node.ELEMENT_NODE)
         return { html: '', stopped: false };
-      }
 
       const name = node.localName;
-
-      // Treat any encountered pb as a hard stop
-      if (name === 'pb') {
-        return { html: '', stopped: true };
-      }
+      if (name === 'pb') return { html: '', stopped: true };
 
       switch (name) {
         case 'lb': {
           const n = node.getAttribute('n');
-          // If you'd prefer a visible break: return { html: `<br>${n ? `<sup>[${escapeHtml(n)}]</sup>` : ''}`, stopped: false };
           return { html: ` ${n ? `<sup>[${escapeHtml(n)}]</sup>` : ''}`, stopped: false };
         }
         case 'ref': {
@@ -248,7 +233,6 @@
           return { html: `<div class="l">${inner.html}</div>`, stopped: inner.stopped };
         }
         default: {
-          // Unknown/other TEI: render children without wrapper
           const inner = renderChildrenUntil(node, endPb, root);
           return { html: inner.html, stopped: inner.stopped };
         }
@@ -265,7 +249,6 @@
       return { html, stopped: false };
     }
 
-    /* ===== Basic (non-halting) render used for fileDesc ===== */
     function renderNode(node) {
       if (node.nodeType === Node.TEXT_NODE) return escapeHtml(node.textContent);
       if (node.nodeType !== Node.ELEMENT_NODE) return '';
@@ -294,7 +277,6 @@
       return out;
     }
 
-    /* ===== Escapers ===== */
     function escapeHtml(s) {
       return String(s)
         .replaceAll('&', '&amp;')
