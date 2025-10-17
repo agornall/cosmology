@@ -42,9 +42,6 @@
       border-radius: 10px;
       text-align: left;
     }
-    h1, h2 { text-align: center; margin-bottom: 20px; }
-    h1 { font-size: 2.5rem; }
-    h2 { font-size: 1.8rem; color: #00695c; }
 
     /* ===== Palmleaf boxes for PB-based pages ===== */
     :root {
@@ -65,7 +62,7 @@
       font-size: 1.35rem;
       position: relative;
       text-align: left;
-      white-space: normal; /* inline flow; no forced line breaks */
+      white-space: normal; /* prose lines run on; verse lines handled via <l> */
     }
     .leaf .folio {
       position: absolute;
@@ -81,7 +78,17 @@
     }
     .leaf a:hover { color: var(--ink); }
 
-    /* Superscript style for <lb n="…"> */
+    /* Verse styling */
+    .tei-lg {
+      margin: 12px 0 8px 0;
+    }
+    .tei-l {
+      display: block;            /* each verse line on its own line */
+      line-height: 1.6;
+      text-indent: 0;            /* adjust if you want hanging indents */
+    }
+
+    /* Inline line numbers from <lb n="…"> for prose */
     sup {
       font-size: 0.75em;
       color: #00695c;
@@ -119,7 +126,7 @@
         const textEl     = byLocal(xmlDoc, 'text')[0] || xmlDoc;
         const bodyEl     = byLocal(textEl, 'body')[0] || textEl;
 
-        // 1) Render fileDesc in the white container box
+        // 1) Render fileDesc in the white container box (no heading)
         if (fileDescEl) {
           document.getElementById('filedesc').innerHTML =
             `<div class="container">${renderNode(fileDescEl)}</div>`;
@@ -171,12 +178,14 @@
             return; // do not render <pb>
           }
 
-          // Inline handlers
+          // Inline line breaks inside prose: space + optional superscript number
           if (name === 'lb') {
             const n = node.getAttribute('n');
             append(` ${n ? `<sup>[${escapeHtml(n)}]</sup>` : ''}`);
             return;
           }
+
+          // Links
           if (name === 'ref') {
             const href = node.getAttribute('target') || node.getAttribute('href') || '#';
             append(`<a href="${escapeAttr(href)}" target="_blank" rel="noopener">`);
@@ -185,12 +194,26 @@
             return;
           }
 
-          // Structural wrappers (kept inline so the page stays a single box)
+          // Titles / heads / apparatus
           if (name === 'title') { append('<h1>'); for (const c of node.childNodes) walk(c); append('</h1>'); return; }
           if (name === 'head')  { append('<strong>'); for (const c of node.childNodes) walk(c); append('</strong>'); return; }
           if (name === 'app')   { append('<em>'); for (const c of node.childNodes) walk(c); append('</em>'); return; }
 
-          // Default: recurse children
+          // Verses: <lg> (block), <l> (line per row)
+          if (name === 'lg') {
+            append('<div class="tei-lg">');
+            for (const c of node.childNodes) walk(c);
+            append('</div>');
+            return;
+          }
+          if (name === 'l') {
+            append('<span class="tei-l">');
+            for (const c of node.childNodes) walk(c);
+            append('</span><br/>'); // each verse line on its own line
+            return;
+          }
+
+          // Default: recurse children (kept inline to preserve prose flow)
           for (const child of node.childNodes) walk(child);
         }
 
@@ -237,7 +260,9 @@
         case 'title': return `<h1>${renderChildren(node)}</h1>`;
         case 'head':  return `<strong>${renderChildren(node)}</strong>`;
         case 'app':   return `<em>${renderChildren(node)}</em>`;
-        case 'pb':    return ''; // ignore in metadata area (shouldn't appear anyway)
+        case 'lg':    return `<div class="tei-lg">${renderChildren(node)}</div>`;
+        case 'l':     return `<span class="tei-l">${renderChildren(node)}</span><br/>`;
+        case 'pb':    return ''; // ignore in metadata
         default:      return renderChildren(node);
       }
     }
