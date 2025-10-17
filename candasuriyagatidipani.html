@@ -1,94 +1,251 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>TEI XML Viewer</title>
-    <!-- Link to your custom stylesheet for the EB Garamond font -->
-    <link rel="stylesheet" href="fonts/stylesheet.css">
-    <style>
-        body {
-            font-family: 'EB Garamond', serif; /* Now using your custom font */
-            background-color: #e0f2f1;
-            color: #004d40;
-            margin: 0;
-            padding: 20px;
-        }
-        pre {
-            white-space: pre-wrap; /* Preserve line breaks */
-            font-size: 1.5rem;
-        }
-        /* Custom styles for TEI elements */
-        pre .tei-head {
-            font-size: 1.5rem;
-            font-variant: underline;
-        }
-        pre .tei-app {
-            font-size: 1rem;
-            font-style: italic;
-        }
-        pre .tei-title {
-            font-size: 2rem;
-            font-weight: bold;
-            text-align: center;
-            display: block;
-            margin-bottom: 20px;
-        }
-        pre sup { /* Style for line number in superscript */
-            font-size: 0.75em; /* Smaller font size for superscript */
-            color: #00695c; /* Slightly different color for emphasis */
-        }
-    </style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>TEI XML Viewer</title>
+  <link rel="stylesheet" href="fonts/stylesheet.css"/>
+  <style>
+    /* ===== publications.html look & feel ===== */
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      font-family: 'EB Garamond', serif;
+      background-color: #e0f2f1;
+      color: #004d40;
+      text-align: center;
+    }
+    .top-nav {
+      width: 100%;
+      text-align: center;
+      padding: 20px 0;
+      background-color: #e0f2f1;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    }
+    .top-nav a {
+      margin: 0 15px;
+      font-size: 1rem;
+      text-transform: uppercase;
+      text-decoration: none;
+      color: #004d40;
+    }
+    .top-nav a:hover, .top-nav a:focus {
+      text-decoration: underline;
+      color: #00796b;
+    }
+
+    .container {
+      width: 90%;
+      margin: 30px auto;
+      padding: 20px 40px;
+      background-color: #ffffff;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+      border-radius: 10px;
+      text-align: left;
+    }
+    h1, h2 { text-align: center; margin-bottom: 20px; }
+    h1 { font-size: 2.5rem; }
+    h2 { font-size: 1.8rem; color: #00695c; }
+
+    /* ===== Palmleaf boxes for PB-based pages ===== */
+    :root {
+      --leaf-3: #fff8e1;
+      --leaf-4: #fff3c6;
+      --leaf-border: #c0a85a;
+      --ink: #004d40;
+      --accent: #00796b;
+    }
+    .leaf {
+      background: linear-gradient(90deg, var(--leaf-3) 0%, var(--leaf-4) 100%);
+      border: 1px solid var(--leaf-border);
+      border-radius: 10px;
+      box-shadow: 1px 2px 6px rgba(0,0,0,0.2);
+      width: 80%;
+      margin: 20px auto;
+      padding: 40px 25px 25px 25px; /* top space for folio label */
+      font-size: 1.35rem;
+      position: relative;
+      text-align: left;
+      white-space: normal; /* inline flow; no forced line breaks */
+    }
+    .leaf .folio {
+      position: absolute;
+      left: 15px;
+      top: 10px; /* top-left corner */
+      font-weight: bold;
+      font-size: 0.9rem;
+      color: var(--ink);
+    }
+    .leaf a {
+      text-decoration: underline;
+      color: var(--accent);
+    }
+    .leaf a:hover { color: var(--ink); }
+
+    /* Superscript style for <lb n="…"> */
+    sup {
+      font-size: 0.75em;
+      color: #00695c;
+    }
+  </style>
 </head>
 <body>
-    <pre id="xml-content"></pre>
+  <div class="top-nav">
+    <a href="index.html">Home</a>
+    <a href="about.html">About</a>
+    <a href="https://github.com/agornall/cosmology/tree/main/texts-xml">Source</a>
+    <a href="lecture.html">I.B. Horner Lecture</a>
+    <a href="publications.html">Publications</a>
+  </div>
 
-    <script>
-        fetch('texts-xml/candasuriyagatidipani.xml') // Update the file path here
-            .then(response => response.text())
-            .then(data => {
-                // Parse the XML content
-                let parser = new DOMParser();
-                let xmlDoc = parser.parseFromString(data, "text/xml");
+  <!-- File description box -->
+  <div id="filedesc"></div>
+  <!-- PB-based page boxes -->
+  <div id="pages"></div>
 
-                // Function to recursively extract text content from XML nodes
-                function extractText(node) {
-                    let text = '';
+  <script>
+    const XML_PATH = 'texts-xml/okasalokadipani.xml';
 
-                    if (node.nodeType === Node.TEXT_NODE) {
-                        text += node.textContent;
-                    } else if (node.nodeName === 'head') {
-                        text += '<span class="tei-head">' + node.textContent + '</span>';
-                    } else if (node.nodeName === 'app') {
-                        text += '<span class="tei-app">' + node.textContent + '</span>';
-                    } else if (node.nodeName === 'title') {
-                        text += '<span class="tei-title">' + node.textContent + '</span>';
-                    } else if (node.nodeName === 'lb') {
-                        // Check if the lb element has an 'n' attribute for the line number
-                        let lineNumber = node.getAttribute('n');
-                        if (lineNumber) {
-                            text += '<sup>[' + lineNumber + ']</sup>'; // Insert line number in superscript
-                        }
-                    } else {
-                        for (let childNode of node.childNodes) {
-                            text += extractText(childNode);
-                        }
-                    }
+    fetch(XML_PATH)
+      .then(res => res.text())
+      .then(str => {
+        const parser = new DOMParser();
+        const xmlDoc = parser.parseFromString(str, 'text/xml');
 
-                    return text;
-                }
+        // Namespace-agnostic lookup
+        const byLocal = (root, name) =>
+          Array.from(root.getElementsByTagName('*')).filter(e => e.localName === name);
 
-                // Extract text content from the entire XML document
-                let textContent = extractText(xmlDoc);
+        const fileDescEl = byLocal(xmlDoc, 'fileDesc')[0];
+        const textEl     = byLocal(xmlDoc, 'text')[0] || xmlDoc;
+        const bodyEl     = byLocal(textEl, 'body')[0] || textEl;
 
-                // Set the extracted text content to the pre element
-                let xmlContentElement = document.getElementById('xml-content');
-                xmlContentElement.innerHTML = textContent.trim();
-                xmlContentElement.style.fontFamily = "'EB Garamond', serif";
-            })
-            .catch(error => {
-                console.error('Error fetching XML file:', error);
-            });
-    </script>
+        // 1) Render fileDesc in the white container box
+        if (fileDescEl) {
+          document.getElementById('filedesc').innerHTML =
+            `<div class="container">${renderNode(fileDescEl)}</div>`;
+        }
+
+        // 2) Walk the body and split on ANY <pb>, even if nested
+        const pagesDiv = document.getElementById('pages');
+
+        let started = false;           // only render after first <pb>
+        let currentFolio = '';
+        let parts = [];                // collect HTML pieces for current page
+        let hasContent = false;        // avoid empty pages
+
+        function append(html) {
+          if (!started) return;        // ignore preface content before first pb
+          if (html) {
+            parts.push(html);
+            hasContent = true;
+          }
+        }
+
+        function flushPage() {
+          if (!started) return;
+          if (!hasContent) {           // skip empty pages (e.g., consecutive pb)
+            parts = [];
+            return;
+          }
+          const html = parts.join('');
+          const fol = currentFolio ? `<span class="folio">${escapeHtml(currentFolio)}</span>` : '';
+          pagesDiv.insertAdjacentHTML('beforeend', `<div class="leaf">${fol}${html}</div>`);
+          parts = [];
+          hasContent = false;
+        }
+
+        function walk(node) {
+          if (node.nodeType === Node.TEXT_NODE) {
+            append(escapeHtml(node.textContent));
+            return;
+          }
+          if (node.nodeType !== Node.ELEMENT_NODE) return;
+
+          const name = node.localName;
+
+          if (name === 'pb') {
+            // Start a new page from here on
+            flushPage();
+            currentFolio = node.getAttribute('n') || '';
+            started = true;
+            return; // do not render <pb>
+          }
+
+          // Inline handlers
+          if (name === 'lb') {
+            const n = node.getAttribute('n');
+            append(` ${n ? `<sup>[${escapeHtml(n)}]</sup>` : ''}`);
+            return;
+          }
+          if (name === 'ref') {
+            const href = node.getAttribute('target') || node.getAttribute('href') || '#';
+            append(`<a href="${escapeAttr(href)}" target="_blank" rel="noopener">`);
+            for (const child of node.childNodes) walk(child);
+            append(`</a>`);
+            return;
+          }
+
+          // Structural wrappers (kept inline so the page stays a single box)
+          if (name === 'title') { append('<h1>'); for (const c of node.childNodes) walk(c); append('</h1>'); return; }
+          if (name === 'head')  { append('<strong>'); for (const c of node.childNodes) walk(c); append('</strong>'); return; }
+          if (name === 'app')   { append('<em>'); for (const c of node.childNodes) walk(c); append('</em>'); return; }
+
+          // Default: recurse children
+          for (const child of node.childNodes) walk(child);
+        }
+
+        walk(bodyEl);
+        flushPage(); // flush last page
+      })
+      .catch(err => {
+        console.error('Error fetching XML:', err);
+        document.getElementById('pages').textContent = 'Unable to load manuscript.';
+      });
+
+    // ---- Basic escaping helpers ----
+    function escapeHtml(s) {
+      return String(s)
+        .replaceAll('&', '&amp;')
+        .replaceAll('<', '&lt;')
+        .replaceAll('>', '&gt;')
+        .replaceAll('"', '&quot;');
+    }
+    function escapeAttr(s) {
+      return String(s)
+        .replaceAll('&', '&amp;')
+        .replaceAll('<', '&lt;')
+        .replaceAll('>', '&gt;')
+        .replaceAll('"', '&quot;')
+        .replaceAll("'", '&#39;');
+    }
+
+    // Render fileDesc using the same walkers (but without pb-driven splitting)
+    function renderNode(node) {
+      if (node.nodeType === Node.TEXT_NODE) return escapeHtml(node.textContent);
+      if (node.nodeType !== Node.ELEMENT_NODE) return '';
+
+      const name = node.localName;
+      switch (name) {
+        case 'lb': {
+          const n = node.getAttribute('n');
+          return ` ${n ? `<sup>[${escapeHtml(n)}]</sup>` : ''}`;
+        }
+        case 'ref': {
+          const href = node.getAttribute('target') || node.getAttribute('href') || '#';
+          return `<a href="${escapeAttr(href)}" target="_blank" rel="noopener">${renderChildren(node)}</a>`;
+        }
+        case 'title': return `<h1>${renderChildren(node)}</h1>`;
+        case 'head':  return `<strong>${renderChildren(node)}</strong>`;
+        case 'app':   return `<em>${renderChildren(node)}</em>`;
+        case 'pb':    return ''; // ignore in metadata area (shouldn't appear anyway)
+        default:      return renderChildren(node);
+      }
+    }
+    function renderChildren(el) {
+      let out = '';
+      for (const child of el.childNodes) out += renderNode(child);
+      return out;
+    }
+  </script>
 </body>
 </html>
