@@ -14,7 +14,6 @@
       color: #004d40;
       text-align: center;
     }
-
     .top-nav {
       width: 100%;
       text-align: center;
@@ -33,7 +32,6 @@
       text-decoration: underline;
       color: #00796b;
     }
-
     .container {
       width: 90%;
       margin: 30px auto;
@@ -43,19 +41,17 @@
       border-radius: 10px;
       text-align: left;
     }
-
     h1, h2 { text-align: center; margin-bottom: 20px; }
-    h1 { font-size: 2.5rem; }
-    h2 { font-size: 1.8rem; color: #00695c; }
+    h1 { font-size: 2.0rem; }
+    h2 { font-size: 1.4rem; color: #00695c; }
 
-    /* ===== Leaf (Page) Boxes ===== */
+    /* ===== Page (Leaf) Boxes ===== */
     :root {
       --paper-bg: #fdfdfb;
       --paper-border: #d0c8a5;
       --ink: #004d40;
       --accent: #00796b;
     }
-
     .leaf {
       background-color: var(--paper-bg);
       border: 1px solid var(--paper-border);
@@ -64,12 +60,12 @@
       width: 80%;
       margin: 25px auto;
       padding: 45px 30px 30px 30px;
-      font-size: 1.25rem;
+      font-size: 1.2rem;
       position: relative;
       text-align: left;
       white-space: normal;
+      min-height: 60px; /* ensures empty pages still show a box */
     }
-
     .leaf .folio {
       position: absolute;
       top: 10px;
@@ -78,34 +74,19 @@
       font-size: 0.9rem;
       color: var(--ink);
     }
-
     .leaf p {
       margin: 1em 0;
       line-height: 1.5em;
     }
 
     /* ===== Verse formatting ===== */
-    .lg {
-      margin: 1em 0 1em 2em;
-    }
-    .l {
-      display: block;
-      margin-left: 2em;
-      text-indent: -1em;
-      line-height: 1.4em;
-    }
+    .lg { margin: 1em 0 1em 2em; }
+    .l  { display: block; margin-left: 2em; text-indent: -1em; line-height: 1.4em; }
 
     /* ===== Inline Elements ===== */
-    .leaf a {
-      text-decoration: underline;
-      color: var(--accent);
-    }
+    .leaf a { text-decoration: underline; color: var(--accent); }
     .leaf a:hover { color: var(--ink); }
-
-    sup {
-      font-size: 0.75em;
-      color: #00695c;
-    }
+    sup { font-size: 0.75em; color: #00695c; }
   </style>
 </head>
 <body>
@@ -123,61 +104,171 @@
   <div id="pages"></div>
 
   <script>
-    const XML_PATH = 'texts-xml/arunavatisangaha.xml';
+    // Optional: allow ?file=yourfile.xml
+    const params = new URLSearchParams(location.search);
+    const XML_PATH = params.get('file') || 'texts-xml/chagatidipanitika.xml';
 
     fetch(XML_PATH)
       .then(res => res.text())
       .then(str => {
         const parser = new DOMParser();
         const xmlDoc = parser.parseFromString(str, 'text/xml');
+
         const byLocal = (root, name) =>
           Array.from(root.getElementsByTagName('*')).filter(e => e.localName === name);
 
         const fileDescEl = byLocal(xmlDoc, 'fileDesc')[0];
-        const textEl    = byLocal(xmlDoc, 'text')[0] || xmlDoc;
-        const bodyEl    = byLocal(textEl, 'body')[0] || textEl;
+        const textEl     = byLocal(xmlDoc, 'text')[0] || xmlDoc;
+        const bodyEl     = byLocal(textEl, 'body')[0] || textEl;
 
-        // 1) Render file description
+        // 1) Render file description (simple dump of fileDesc subtree)
         if (fileDescEl) {
           document.getElementById('filedesc').innerHTML =
             `<div class="container">${renderNode(fileDescEl)}</div>`;
         }
 
-        // 2) Render pages grouped by <pb>
+        // 2) Find all <pb> in document order and build a leaf per pb
+        const pbs = Array.from(bodyEl.getElementsByTagName('*')).filter(n => n.localName === 'pb');
         const pagesDiv = document.getElementById('pages');
-        const allNodes = Array.from(bodyEl.childNodes);
-        let currentFolio = '';
-        let currentHtml = '';
 
-        const flushLeaf = () => {
-          if (!currentFolio && !currentHtml.trim()) return;
-          const fol = currentFolio ? `<span class="folio">${escapeHtml(currentFolio)}</span>` : '';
-          pagesDiv.insertAdjacentHTML('beforeend', `<div class="leaf">${fol}${currentHtml}</div>`);
-          currentHtml = '';
-        };
-
-        for (const node of allNodes) {
-          if (node.nodeType === Node.ELEMENT_NODE && node.localName === 'pb') {
-            // new page
-            if (currentHtml.trim()) flushLeaf();
-            currentFolio = node.getAttribute('n') || '';
-          } else {
-            currentHtml += renderNode(node);
-          }
+        // If no pb, fall back to a single box with entire body
+        if (pbs.length === 0) {
+          const html = renderChildren(bodyEl);
+          pagesDiv.insertAdjacentHTML('beforeend', `<div class="leaf">${html}</div>`);
+          return;
         }
-        flushLeaf(); // flush last page
+
+        for (let i = 0; i < pbs.length; i++) {
+          const startPb = pbs[i];
+          const endPb   = pbs[i + 1] || null;
+          const folio   = startPb.getAttribute('n') || '';
+
+          const html = renderBetween(startPb, endPb, bodyEl);
+          const fol  = `<span class="folio">${escapeHtml(folio)}</span>`;
+          // Create a box even if html is empty, to ensure every folio shows.
+          pagesDiv.insertAdjacentHTML('beforeend', `<div class="leaf">${fol}${html || ''}</div>`);
+        }
       })
       .catch(err => {
         console.error('Error fetching XML:', err);
         document.getElementById('pages').textContent = 'Unable to load manuscript.';
       });
 
-    /* ===== Rendering Helpers ===== */
-    function renderNode(node) {
+    /* ====== Paging helpers: render content after startPb until endPb ====== */
+    function renderBetween(startPb, endPb, root) {
+      const start = nextAfter(startPb, root);
+      if (!start) return '';
+      let html = '';
+      let node = start;
+
+      while (node && node !== endPb) {
+        const { html: chunk, stopped } = renderNodeUntil(node, endPb, root);
+        html += chunk;
+        if (stopped) break; // hit endPb somewhere inside
+        node = nextAfterSubtree(node, root);
+      }
+      return html;
+    }
+
+    // Walk forward one node in document order (exclusive of n), constrained to root
+    function nextAfter(n, root) {
+      if (n.nextSibling) return n.nextSibling;
+      let p = n.parentNode;
+      while (p && p !== root) {
+        if (p.nextSibling) return p.nextSibling;
+        p = p.parentNode;
+      }
+      return null;
+    }
+
+    // Jump to the node after the entire subtree rooted at n
+    function nextAfterSubtree(n, root) {
+      if (n.nextSibling) return n.nextSibling;
+      let p = n.parentNode;
+      while (p && p !== root) {
+        if (p.nextSibling) return p.nextSibling;
+        p = p.parentNode;
+      }
+      return null;
+    }
+
+    /* ====== Recursive render that halts at endPb ====== */
+    function renderNodeUntil(node, endPb, root) {
+      // Stop if we've arrived at the next page break
+      if (node === endPb) return { html: '', stopped: true };
+
       if (node.nodeType === Node.TEXT_NODE) {
-        return escapeHtml(node.textContent);
+        return { html: escapeHtml(node.textContent), stopped: false };
       }
 
+      if (node.nodeType !== Node.ELEMENT_NODE) {
+        return { html: '', stopped: false };
+      }
+
+      const name = node.localName;
+
+      // Treat any encountered pb as a hard stop
+      if (name === 'pb') {
+        return { html: '', stopped: true };
+      }
+
+      switch (name) {
+        case 'lb': {
+          const n = node.getAttribute('n');
+          // If you'd prefer a visible break: return { html: `<br>${n ? `<sup>[${escapeHtml(n)}]</sup>` : ''}`, stopped: false };
+          return { html: ` ${n ? `<sup>[${escapeHtml(n)}]</sup>` : ''}`, stopped: false };
+        }
+        case 'ref': {
+          const href = node.getAttribute('target') || node.getAttribute('href') || '#';
+          const inner = renderChildrenUntil(node, endPb, root);
+          return { html: `<a href="${escapeAttr(href)}" target="_blank" rel="noopener">${inner.html}</a>`, stopped: inner.stopped };
+        }
+        case 'title': {
+          const inner = renderChildrenUntil(node, endPb, root);
+          return { html: `<h1>${inner.html}</h1>`, stopped: inner.stopped };
+        }
+        case 'head': {
+          const inner = renderChildrenUntil(node, endPb, root);
+          return { html: `<strong>${inner.html}</strong>`, stopped: inner.stopped };
+        }
+        case 'app': {
+          const inner = renderChildrenUntil(node, endPb, root);
+          return { html: `<em>${inner.html}</em>`, stopped: inner.stopped };
+        }
+        case 'p': {
+          const inner = renderChildrenUntil(node, endPb, root);
+          return { html: `<p>${inner.html}</p>`, stopped: inner.stopped };
+        }
+        case 'lg': {
+          const inner = renderChildrenUntil(node, endPb, root);
+          return { html: `<div class="lg">${inner.html}</div>`, stopped: inner.stopped };
+        }
+        case 'l': {
+          const inner = renderChildrenUntil(node, endPb, root);
+          return { html: `<div class="l">${inner.html}</div>`, stopped: inner.stopped };
+        }
+        default: {
+          // Unknown/other TEI: render children without wrapper
+          const inner = renderChildrenUntil(node, endPb, root);
+          return { html: inner.html, stopped: inner.stopped };
+        }
+      }
+    }
+
+    function renderChildrenUntil(el, endPb, root) {
+      let html = '';
+      for (let child = el.firstChild; child; child = child.nextSibling) {
+        const out = renderNodeUntil(child, endPb, root);
+        html += out.html;
+        if (out.stopped) return { html, stopped: true };
+      }
+      return { html, stopped: false };
+    }
+
+    /* ===== Basic (non-halting) render used for fileDesc ===== */
+    function renderNode(node) {
+      if (node.nodeType === Node.TEXT_NODE) return escapeHtml(node.textContent);
+      if (node.nodeType !== Node.ELEMENT_NODE) return '';
       const name = node.localName;
       switch (name) {
         case 'lb': {
@@ -197,15 +288,13 @@
         default:      return renderChildren(node);
       }
     }
-
     function renderChildren(el) {
       let out = '';
-      for (const child of el.childNodes) {
-        out += renderNode(child);
-      }
+      for (const child of el.childNodes) out += renderNode(child);
       return out;
     }
 
+    /* ===== Escapers ===== */
     function escapeHtml(s) {
       return String(s)
         .replaceAll('&', '&amp;')
@@ -213,7 +302,6 @@
         .replaceAll('>', '&gt;')
         .replaceAll('"', '&quot;');
     }
-
     function escapeAttr(s) {
       return String(s)
         .replaceAll('&', '&amp;')
