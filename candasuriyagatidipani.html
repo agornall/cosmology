@@ -1,276 +1,94 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>TEI XML Viewer</title>
-  <link rel="stylesheet" href="fonts/stylesheet.css"/>
-  <style>
-    /* ===== publications.html look & feel ===== */
-    * { margin: 0; padding: 0; box-sizing: border-box; }
-    body {
-      font-family: 'EB Garamond', serif;
-      background-color: #e0f2f1;
-      color: #004d40;
-      text-align: center;
-    }
-    .top-nav {
-      width: 100%;
-      text-align: center;
-      padding: 20px 0;
-      background-color: #e0f2f1;
-      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-    }
-    .top-nav a {
-      margin: 0 15px;
-      font-size: 1rem;
-      text-transform: uppercase;
-      text-decoration: none;
-      color: #004d40;
-    }
-    .top-nav a:hover, .top-nav a:focus {
-      text-decoration: underline;
-      color: #00796b;
-    }
-
-    .container {
-      width: 90%;
-      margin: 30px auto;
-      padding: 20px 40px;
-      background-color: #ffffff;
-      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-      border-radius: 10px;
-      text-align: left;
-    }
-
-    /* ===== Palmleaf boxes for PB-based pages ===== */
-    :root {
-      --leaf-3: #fff8e1;
-      --leaf-4: #fff3c6;
-      --leaf-border: #c0a85a;
-      --ink: #004d40;
-      --accent: #00796b;
-    }
-    .leaf {
-      background: linear-gradient(90deg, var(--leaf-3) 0%, var(--leaf-4) 100%);
-      border: 1px solid var(--leaf-border);
-      border-radius: 10px;
-      box-shadow: 1px 2px 6px rgba(0,0,0,0.2);
-      width: 80%;
-      margin: 20px auto;
-      padding: 40px 25px 25px 25px; /* top space for folio label */
-      font-size: 1.35rem;
-      position: relative;
-      text-align: left;
-      white-space: normal; /* prose lines run on; verse lines handled via <l> */
-    }
-    .leaf .folio {
-      position: absolute;
-      left: 15px;
-      top: 10px; /* top-left corner */
-      font-weight: bold;
-      font-size: 0.9rem;
-      color: var(--ink);
-    }
-    .leaf a {
-      text-decoration: underline;
-      color: var(--accent);
-    }
-    .leaf a:hover { color: var(--ink); }
-
-    /* Verse styling */
-    .tei-lg {
-      margin: 12px 0 8px 0;
-    }
-    .tei-l {
-      display: block;            /* each verse line on its own line */
-      line-height: 1.6;
-      text-indent: 0;            /* adjust if you want hanging indents */
-    }
-
-    /* Inline line numbers from <lb n="…"> for prose */
-    sup {
-      font-size: 0.75em;
-      color: #00695c;
-    }
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TEI XML Viewer</title>
+    <!-- Link to your custom stylesheet for the EB Garamond font -->
+    <link rel="stylesheet" href="fonts/stylesheet.css">
+    <style>
+        body {
+            font-family: 'EB Garamond', serif; /* Now using your custom font */
+            background-color: #e0f2f1;
+            color: #004d40;
+            margin: 0;
+            padding: 20px;
+        }
+        pre {
+            white-space: pre-wrap; /* Preserve line breaks */
+            font-size: 1.5rem;
+        }
+        /* Custom styles for TEI elements */
+        pre .tei-head {
+            font-size: 1.5rem;
+            font-variant: underline;
+        }
+        pre .tei-app {
+            font-size: 1rem;
+            font-style: italic;
+        }
+        pre .tei-title {
+            font-size: 2rem;
+            font-weight: bold;
+            text-align: center;
+            display: block;
+            margin-bottom: 20px;
+        }
+        pre sup { /* Style for line number in superscript */
+            font-size: 0.75em; /* Smaller font size for superscript */
+            color: #00695c; /* Slightly different color for emphasis */
+        }
+    </style>
 </head>
 <body>
-  <div class="top-nav">
-    <a href="index.html">Home</a>
-    <a href="about.html">About</a>
-    <a href="https://github.com/agornall/cosmology/tree/main/texts-xml">Source</a>
-    <a href="lecture.html">I.B. Horner Lecture</a>
-    <a href="publications.html">Publications</a>
-  </div>
+    <pre id="xml-content"></pre>
 
-  <!-- File description box -->
-  <div id="filedesc"></div>
-  <!-- PB-based page boxes -->
-  <div id="pages"></div>
+    <script>
+        fetch('texts-xml/candasuriyagatidipani.xml') // Update the file path here
+            .then(response => response.text())
+            .then(data => {
+                // Parse the XML content
+                let parser = new DOMParser();
+                let xmlDoc = parser.parseFromString(data, "text/xml");
 
-  <script>
-    const XML_PATH = 'texts-xml/candasuriyagatidipani.xml';
+                // Function to recursively extract text content from XML nodes
+                function extractText(node) {
+                    let text = '';
 
-    fetch(XML_PATH)
-      .then(res => res.text())
-      .then(str => {
-        const parser = new DOMParser();
-        const xmlDoc = parser.parseFromString(str, 'text/xml');
+                    if (node.nodeType === Node.TEXT_NODE) {
+                        text += node.textContent;
+                    } else if (node.nodeName === 'head') {
+                        text += '<span class="tei-head">' + node.textContent + '</span>';
+                    } else if (node.nodeName === 'app') {
+                        text += '<span class="tei-app">' + node.textContent + '</span>';
+                    } else if (node.nodeName === 'title') {
+                        text += '<span class="tei-title">' + node.textContent + '</span>';
+                    } else if (node.nodeName === 'lb') {
+                        // Check if the lb element has an 'n' attribute for the line number
+                        let lineNumber = node.getAttribute('n');
+                        if (lineNumber) {
+                            text += '<sup>[' + lineNumber + ']</sup>'; // Insert line number in superscript
+                        }
+                    } else {
+                        for (let childNode of node.childNodes) {
+                            text += extractText(childNode);
+                        }
+                    }
 
-        // Namespace-agnostic lookup
-        const byLocal = (root, name) =>
-          Array.from(root.getElementsByTagName('*')).filter(e => e.localName === name);
+                    return text;
+                }
 
-        const fileDescEl = byLocal(xmlDoc, 'fileDesc')[0];
-        const textEl     = byLocal(xmlDoc, 'text')[0] || xmlDoc;
-        const bodyEl     = byLocal(textEl, 'body')[0] || textEl;
+                // Extract text content from the entire XML document
+                let textContent = extractText(xmlDoc);
 
-        // 1) Render fileDesc in the white container box (no heading)
-        if (fileDescEl) {
-          document.getElementById('filedesc').innerHTML =
-            `<div class="container">${renderNode(fileDescEl)}</div>`;
-        }
-
-        // 2) Walk the body and split on ANY <pb>, even if nested
-        const pagesDiv = document.getElementById('pages');
-
-        let started = false;           // only render after first <pb>
-        let currentFolio = '';
-        let parts = [];                // collect HTML pieces for current page
-        let hasContent = false;        // avoid empty pages
-
-        function append(html) {
-          if (!started) return;        // ignore preface content before first pb
-          if (html) {
-            parts.push(html);
-            hasContent = true;
-          }
-        }
-
-        function flushPage() {
-          if (!started) return;
-          if (!hasContent) {           // skip empty pages (e.g., consecutive pb)
-            parts = [];
-            return;
-          }
-          const html = parts.join('');
-          const fol = currentFolio ? `<span class="folio">${escapeHtml(currentFolio)}</span>` : '';
-          pagesDiv.insertAdjacentHTML('beforeend', `<div class="leaf">${fol}${html}</div>`);
-          parts = [];
-          hasContent = false;
-        }
-
-        function walk(node) {
-          if (node.nodeType === Node.TEXT_NODE) {
-            append(escapeHtml(node.textContent));
-            return;
-          }
-          if (node.nodeType !== Node.ELEMENT_NODE) return;
-
-          const name = node.localName;
-
-          if (name === 'pb') {
-            // Start a new page from here on
-            flushPage();
-            currentFolio = node.getAttribute('n') || '';
-            started = true;
-            return; // do not render <pb>
-          }
-
-          // Inline line breaks inside prose: space + optional superscript number
-          if (name === 'lb') {
-            const n = node.getAttribute('n');
-            append(` ${n ? `<sup>[${escapeHtml(n)}]</sup>` : ''}`);
-            return;
-          }
-
-          // Links
-          if (name === 'ref') {
-            const href = node.getAttribute('target') || node.getAttribute('href') || '#';
-            append(`<a href="${escapeAttr(href)}" target="_blank" rel="noopener">`);
-            for (const child of node.childNodes) walk(child);
-            append(`</a>`);
-            return;
-          }
-
-          // Titles / heads / apparatus
-          if (name === 'title') { append('<h1>'); for (const c of node.childNodes) walk(c); append('</h1>'); return; }
-          if (name === 'head')  { append('<strong>'); for (const c of node.childNodes) walk(c); append('</strong>'); return; }
-          if (name === 'app')   { append('<em>'); for (const c of node.childNodes) walk(c); append('</em>'); return; }
-
-          // Verses: <lg> (block), <l> (line per row)
-          if (name === 'lg') {
-            append('<div class="tei-lg">');
-            for (const c of node.childNodes) walk(c);
-            append('</div>');
-            return;
-          }
-          if (name === 'l') {
-            append('<span class="tei-l">');
-            for (const c of node.childNodes) walk(c);
-            append('</span><br/>'); // each verse line on its own line
-            return;
-          }
-
-          // Default: recurse children (kept inline to preserve prose flow)
-          for (const child of node.childNodes) walk(child);
-        }
-
-        walk(bodyEl);
-        flushPage(); // flush last page
-      })
-      .catch(err => {
-        console.error('Error fetching XML:', err);
-        document.getElementById('pages').textContent = 'Unable to load manuscript.';
-      });
-
-    // ---- Basic escaping helpers ----
-    function escapeHtml(s) {
-      return String(s)
-        .replaceAll('&', '&amp;')
-        .replaceAll('<', '&lt;')
-        .replaceAll('>', '&gt;')
-        .replaceAll('"', '&quot;');
-    }
-    function escapeAttr(s) {
-      return String(s)
-        .replaceAll('&', '&amp;')
-        .replaceAll('<', '&lt;')
-        .replaceAll('>', '&gt;')
-        .replaceAll('"', '&quot;')
-        .replaceAll("'", '&#39;');
-    }
-
-    // Render fileDesc using the same walkers (but without pb-driven splitting)
-    function renderNode(node) {
-      if (node.nodeType === Node.TEXT_NODE) return escapeHtml(node.textContent);
-      if (node.nodeType !== Node.ELEMENT_NODE) return '';
-
-      const name = node.localName;
-      switch (name) {
-        case 'lb': {
-          const n = node.getAttribute('n');
-          return ` ${n ? `<sup>[${escapeHtml(n)}]</sup>` : ''}`;
-        }
-        case 'ref': {
-          const href = node.getAttribute('target') || node.getAttribute('href') || '#';
-          return `<a href="${escapeAttr(href)}" target="_blank" rel="noopener">${renderChildren(node)}</a>`;
-        }
-        case 'title': return `<h1>${renderChildren(node)}</h1>`;
-        case 'head':  return `<strong>${renderChildren(node)}</strong>`;
-        case 'app':   return `<em>${renderChildren(node)}</em>`;
-        case 'lg':    return `<div class="tei-lg">${renderChildren(node)}</div>`;
-        case 'l':     return `<span class="tei-l">${renderChildren(node)}</span><br/>`;
-        case 'pb':    return ''; // ignore in metadata
-        default:      return renderChildren(node);
-      }
-    }
-    function renderChildren(el) {
-      let out = '';
-      for (const child of el.childNodes) out += renderNode(child);
-      return out;
-    }
-  </script>
+                // Set the extracted text content to the pre element
+                let xmlContentElement = document.getElementById('xml-content');
+                xmlContentElement.innerHTML = textContent.trim();
+                xmlContentElement.style.fontFamily = "'EB Garamond', serif";
+            })
+            .catch(error => {
+                console.error('Error fetching XML file:', error);
+            });
+    </script>
 </body>
 </html>
